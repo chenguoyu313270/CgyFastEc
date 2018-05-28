@@ -26,7 +26,7 @@ public class ExampleDelagate extends latteDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
 
     }
-    private void testRestClient(){//ExampleDelagate
+    private void testRestClient(){//ExampleDelagate 2499
         RestClient.builder().url("")
                 .params("","")
                 .success(new ISuccess() {
