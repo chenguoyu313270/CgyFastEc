@@ -49,6 +49,9 @@ public class RestCreator {
 
 
     }
+ public static RestService getRestService(){
+        return RestServiceHolder.REST_SERVICE;
+ }
 
 
 }

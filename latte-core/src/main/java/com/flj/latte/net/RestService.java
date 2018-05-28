@@ -27,7 +27,7 @@ public interface RestService {
 
     @FormUrlEncoded
     @POST
-    Call<String> psot(@Url String url, @FieldMap Map<String ,Object> Params);
+    Call<String> post(@Url String url, @FieldMap Map<String ,Object> Params);
 
     @FormUrlEncoded
     @PUT
