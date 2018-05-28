@@ -15,11 +15,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class RestCreator {
-    private static final class  ParamsHolder{
-        public static final WeakHashMap<String ,Object> PARAMS=new WeakHashMap<>();
+    private static final class ParamsHolder {
+        public static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 
-    public static final WeakHashMap<String ,Object> getParams(){
+    public static final WeakHashMap<String, Object> getParams() {
         return ParamsHolder.PARAMS;
     }
 
@@ -32,19 +32,19 @@ public class RestCreator {
                 .build();
 
 
+    }
+
+    private static final class OKHttpHolder {
+        private static final int TIME_OUT = 60;
+        private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS).
+                        build();
 
 
     }
-    private static final class OKHttpHolder{
-           private static final int TIME_OUT=60;
-           private static final OkHttpClient OK_HTTP_CLIENT=new OkHttpClient.Builder()
-                   .connectTimeout(TIME_OUT, TimeUnit.SECONDS).
-                   build();
 
-
-    }
-    private static final class RestServiceHolder{
-        private static final RestService REST_SERVICE=RetrofitHolder.RETROFIT_CLIENT
+    private static final class RestServiceHolder {
+        private static final RestService REST_SERVICE = RetrofitHolder.RETROFIT_CLIENT
                 .create(RestService.class);
 
 
