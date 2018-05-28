@@ -6,4 +6,9 @@
 .DS_Store
 /build
 /captures
+/latte-core/build
+/latte-compiler/build
+/latte-ec/build
+/latte-ui/build
+/latte-annotaions/build
 .externalNativeBuild
