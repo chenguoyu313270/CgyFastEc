@@ -8,6 +8,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public latteDelegate setRootDelegare() {
-        return new ExampleDelagate();//测试 20180528陈国玉 1400 1500
+        return new ExampleDelagate();//测试 20180528陈国玉 1400 1500 个人电脑测试
     }
 }
