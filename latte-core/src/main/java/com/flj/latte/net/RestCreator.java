@@ -24,7 +24,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL = (String) latte.getConfigurattons().get(ConfigTYpe.API_HOST);
+        private static final String BASE_URL = (String) latte.getConfigurattons().get(ConfigTYpe.API_HOST.name());
 
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

@@ -18,7 +18,7 @@ public class ExampleApp extends Application {
         latte.init(this)
                 .withIcon(new FontAwesomeModule())
         .withIcon(new FontEcModel())
-        .withApiHost("")
+        .withApiHost("http://127.0.0.1/")
         .configure();
 
 

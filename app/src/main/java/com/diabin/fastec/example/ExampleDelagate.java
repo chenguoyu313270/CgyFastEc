@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.flj.latte.delegates.latteDelegate;
@@ -20,12 +21,13 @@ public class ExampleDelagate extends latteDelegate {
 
     @Override
     public Object setLayout() {
+
         return R.layout.delegate_example;
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-        testRestClient();
+//        testRestClient();
     }
     private void testRestClient(){//ExampleDelagate 2499
         RestClient.builder().url("http://news.baidu.com/")
