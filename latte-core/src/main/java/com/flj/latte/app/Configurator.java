@@ -51,9 +51,15 @@ public class Configurator {
     }
    @SuppressWarnings("unchecked")
 
-    final <T> T getConfiguration (Enum<ConfigTYpe> key){
-        checkConfiguration();
-        return (T) LATTE_CONFIGS.get(key.name());
+    final <T> T getConfiguration (Object key){
+//        checkConfiguration();
+//        return (T) LATTE_CONFIGS.get(key.name());
+       checkConfiguration();
+       final Object value = LATTE_CONFIGS.get(key);
+       if (value == null) {
+           throw new NullPointerException(key.toString() + " IS NULL");
+       }
+       return (T) LATTE_CONFIGS.get(key);
     }
     public final Configurator withIcon(IconFontDescriptor descriptor){
         ICONS.add(descriptor);

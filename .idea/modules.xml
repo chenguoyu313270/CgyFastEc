@@ -3,12 +3,19 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CgyFastEc.iml" filepath="$PROJECT_DIR$/CgyFastEc.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\CgyFastEc.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\CgyFastEc.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\app\app.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte-annotations/latte-annotations.iml" filepath="$PROJECT_DIR$/latte-annotations/latte-annotations.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-annotations\latte-annotations.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-annotations\latte-annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte-compiler/latte-compiler.iml" filepath="$PROJECT_DIR$/latte-compiler/latte-compiler.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-compiler\latte-compiler.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-compiler\latte-compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte-core/latte-core.iml" filepath="$PROJECT_DIR$/latte-core/latte-core.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-core\latte-core.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-core\latte-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte-ec/latte-ec.iml" filepath="$PROJECT_DIR$/latte-ec/latte-ec.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-ec\latte-ec.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-ec\latte-ec.iml" />
       <module fileurl="file://$PROJECT_DIR$/latte-ui/latte-ui.iml" filepath="$PROJECT_DIR$/latte-ui/latte-ui.iml" />
+      <module fileurl="file://E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-ui\latte-ui.iml" filepath="E:\AS_workspace\CgyFastEc_5.28\CgyFastEc\latte-ui\latte-ui.iml" />
     </modules>
   </component>
 </project>

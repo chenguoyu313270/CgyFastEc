@@ -1,7 +1,7 @@
 package com.flj.latte.net;
 
 import com.flj.latte.app.ConfigTYpe;
-import com.flj.latte.app.latte;
+import com.flj.latte.app.Latte;
 
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +24,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL = (String) latte.getConfigurattons().get(ConfigTYpe.API_HOST.name());
+        private static final String BASE_URL = (String) Latte.getConfigurattons().get(ConfigTYpe.API_HOST.name());
 
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)

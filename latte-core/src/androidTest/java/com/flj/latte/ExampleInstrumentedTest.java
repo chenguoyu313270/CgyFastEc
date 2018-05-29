@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.flj.latte.test", appContext.getPackageName());
+        assertEquals("com.flj.Latte.test", appContext.getPackageName());
     }
 }
