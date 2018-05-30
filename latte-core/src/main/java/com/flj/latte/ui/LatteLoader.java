@@ -21,7 +21,9 @@ public class LatteLoader {
     private static final int LOADER_OFFSET_SCALE = 10;
     private static ArrayList<AppCompatDialog> LOADERS = new ArrayList();
     private static final String DEFAULT_LOADER = LoaderStyle.BallClipRotatePulseIndicator.name();
-
+public static void showLoading(Context context,Enum<LoaderStyle> type){
+    showLoading(context,type.name());
+}
     public static void showLoading(Context context, String type) {
         final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
         final AVLoadingIndicatorView avLoadingIndicatorView = LoaderCreator.create(type, context);
@@ -51,5 +53,16 @@ public class LatteLoader {
         showLoading(context,DEFAULT_LOADER);
 
     }
+    public static void stopLoading(){
+        for (AppCompatDialog dialog :LOADERS){
+            if (dialog!=null){
+                if (dialog.isShowing()){
+                    dialog.cancel();
+                    dialog.dismiss();
+                }
+            }
+        }
+    }
+
 
 }

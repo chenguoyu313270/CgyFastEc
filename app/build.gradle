@@ -27,9 +27,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    compile project(':Latte-ec')
-    provided project(':Latte-annotations')
-    annotationProcessor project(':Latte-compiler')
+    compile project(':latte-ec')
+    provided project(':latte-annotations')
+    annotationProcessor project(':latte-compiler')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 
 }

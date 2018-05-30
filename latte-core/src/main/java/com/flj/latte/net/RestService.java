@@ -3,8 +3,10 @@ package com.flj.latte.net;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -23,22 +25,28 @@ import retrofit2.http.Url;
 
 public interface RestService {
     @GET
-    Call<String> get(@Url String url, @QueryMap Map<String ,Object> Params);
+    Call<String> get(@Url String url, @QueryMap Map<String, Object> Params);
 
     @FormUrlEncoded
     @POST
-    Call<String> post(@Url String url, @FieldMap Map<String ,Object> Params);
+    Call<String> post(@Url String url, @FieldMap Map<String, Object> Params);
+
+    @POST
+    Call<String> postRaw(@Url String url, @Body RequestBody body);
 
     @FormUrlEncoded
     @PUT
-    Call<String> put(@Url String url, @FieldMap Map<String ,Object> Params);
+    Call<String> put(@Url String url, @FieldMap Map<String, Object> Params);
+
+    @PUT
+    Call<String> putRaw(@Url String url, @Body RequestBody body);
 
     @DELETE
-    Call<String> delete(@Url String url, @FieldMap Map<String ,Object> Params);
+    Call<String> delete(@Url String url, @FieldMap Map<String, Object> Params);
 
     @Streaming //边下载边存储
     @GET
-    Call<ResponseBody> download(@Url String url, @QueryMap Map<String ,Object> Params);
+    Call<ResponseBody> download(@Url String url, @QueryMap Map<String, Object> Params);
 
     @Multipart
     @POST

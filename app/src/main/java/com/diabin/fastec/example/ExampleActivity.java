@@ -23,13 +23,14 @@ public class ExampleActivity extends ProxyActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mTextview=findViewById(R.id.tv);
-        testRestClient();
+//        mTextview=findViewById(R.id.tv);
+//        testRestClient();
     }
 
     private void testRestClient(){//ExampleDelagate 2499
         RestClient.builder().url("http://news.baidu.com/")
 //                .params("","")
+                .loader(getApplication())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

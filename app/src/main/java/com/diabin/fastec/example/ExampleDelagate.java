@@ -27,14 +27,16 @@ public class ExampleDelagate extends latteDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-//        testRestClient();
+        testRestClient();
     }
     private void testRestClient(){//ExampleDelagate 2499
         RestClient.builder().url("http://news.baidu.com/")
 //                .params("","")
+      .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+
                         Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 }).failure(new IFailure() {
@@ -48,6 +50,6 @@ public class ExampleDelagate extends latteDelegate {
 
             }
         }).builder()
-        .get();
+                .get();
     }
 }

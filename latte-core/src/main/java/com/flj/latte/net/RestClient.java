@@ -1,18 +1,26 @@
 package com.flj.latte.net;
 
+import android.content.Context;
+import android.support.v4.math.MathUtils;
+
 import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.IRequest;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.net.callback.RequestCallbacks;
+import com.flj.latte.ui.LatteLoader;
+import com.flj.latte.ui.LoaderStyle;
 
-import java.security.PublicKey;
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Multipart;
 
 /**
  * Created by Administrator on 2018\5\24 0024.
@@ -27,7 +35,12 @@ public class RestClient {
     private final IError ERROR;
     private final RequestBody BODY;
 
-    public RestClient(String URL, Map<String, Object> params, IRequest request, ISuccess success, IFailure failure, IError error, RequestBody body) {
+    private final LoaderStyle LOADER_STYLE;
+    private final File FILE;
+    private final Context CONTEXT;
+
+    public RestClient(String URL, Map<String, Object> params, IRequest request, ISuccess success, IFailure failure, IError error,
+                      RequestBody body, File file, Context context, LoaderStyle loaderStyle) {
         this.URL = URL;
         PARAMS.putAll(params);
 
@@ -36,6 +49,11 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
+        this.FILE = file;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loaderStyle;
+
+
     }
 
     public static RestClientBuilder builder() {
@@ -48,6 +66,9 @@ public class RestClient {
         if (REQUEST != null) {
             REQUEST.onRequestStart();
         }
+        if (LOADER_STYLE != null) {
+            LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
+        }
         switch (method) {
             case GET:
                 call = service.get(URL, PARAMS);
@@ -56,42 +77,75 @@ public class RestClient {
                 call = service.post(URL, PARAMS);
 
                 break;
+            case POST_RAW:
+                call = service.postRaw(URL, BODY);
+                break;
             case PUT:
                 call = service.put(URL, PARAMS);
+                break;
+            case PUT_RAW:
+                call = service.putRaw(URL, BODY);
                 break;
             case DELETE:
                 call = service.delete(URL, PARAMS);
                 break;
+            case UOLOAD:
+                final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
+                final MultipartBody.Part body = MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call =RestCreator.getRestService().upload(URL,body);
 
+
+                break;
             default:
                 break;
 
         }
-        if (call!=null){
+        if (call != null) {
             call.enqueue(getRequestCallback());
         }
     }
-    private Callback<String> getRequestCallback(){
-        return new RequestCallbacks(REQUEST,SUCCESS,FAILURE,ERROR);
+
+    private Callback<String> getRequestCallback() {
+        return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR, LOADER_STYLE);
 
     }
-    public final void get(){
+
+    public final void get() {
         resuest(HttpMethod.GET);
 
     }
-    public final void post(){
-        resuest(HttpMethod.POST);
+
+    public final void post() {
+        if (BODY == null) {
+            resuest(HttpMethod.POST);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null!");
+            }
+            resuest(HttpMethod.POST_RAW);
+        }
+
 
     }
-    public final void put(){
-        resuest(HttpMethod.PUT);
+
+    public final void put() {
+//        resuest(HttpMethod.PUT);
+
+        if (BODY == null) {
+            resuest(HttpMethod.PUT);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null!");
+            }
+            resuest(HttpMethod.PUT_RAW);
+        }
 
     }
-    public final void delete(){
+
+    public final void delete() {
         resuest(HttpMethod.DELETE);
 
     }
-
 
 
 

@@ -58,6 +58,7 @@ public class Configurator {
        final Object value = LATTE_CONFIGS.get(key);
        if (value == null) {
            throw new NullPointerException(key.toString() + " IS NULL");
+
        }
        return (T) LATTE_CONFIGS.get(key);
     }
