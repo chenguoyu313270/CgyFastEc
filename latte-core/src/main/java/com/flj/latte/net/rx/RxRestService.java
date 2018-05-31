@@ -1,4 +1,4 @@
-package com.flj.latte.net;
+package com.flj.latte.net.rx;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ import retrofit2.http.Url;
  * Created by Administrator on 2018\5\24 0024.
  */
 
-public interface RestService {
+public interface RxRestService {
     @GET
     Call<String> get(@Url String url, @QueryMap Map<String, Object> Params);
 

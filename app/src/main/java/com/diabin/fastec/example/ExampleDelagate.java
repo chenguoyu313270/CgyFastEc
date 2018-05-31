@@ -29,7 +29,7 @@ public class ExampleDelagate extends latteDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         testRestClient();
     }
-    private void testRestClient(){//ExampleDelagate 2499
+    private void testRestClient(){//ExampleDelagate 2499 http://news.baidu.com/
         RestClient.builder().url("http://news.baidu.com/")
 //                .params("","")
       .loader(getContext())

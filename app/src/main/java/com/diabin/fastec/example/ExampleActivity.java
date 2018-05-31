@@ -23,31 +23,7 @@ public class ExampleActivity extends ProxyActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        mTextview=findViewById(R.id.tv);
-//        testRestClient();
     }
 
-    private void testRestClient(){//ExampleDelagate 2499
-        RestClient.builder().url("http://news.baidu.com/")
-//                .params("","")
-                .loader(getApplication())
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        mTextview.setText(response);
-                        Toast.makeText(getApplication(),response,Toast.LENGTH_LONG).show();
-                    }
-                }).failure(new IFailure() {
-            @Override
-            public void onFailure() {
 
-            }
-        }).error(new IError() {
-            @Override
-            public void onError(int code, String msg) {
-
-            }
-        }).builder()
-                .get();
-    }
 }

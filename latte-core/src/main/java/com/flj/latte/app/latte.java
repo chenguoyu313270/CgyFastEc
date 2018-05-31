@@ -10,7 +10,7 @@ import java.util.WeakHashMap;
 
 public  class Latte {
     public static Configurator init(Context context) {
-        getConfigurattons().put(ConfigTYpe.APPLICATION_CONTEXT.name(), context.getApplicationContext());
+        getConfigurattons().put(ConfigTYpe.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
 
@@ -21,17 +21,14 @@ public  class Latte {
     public static <T> T getConfiguration(Object key) {
         return getConfigurator().getConfiguration(key);
     }
-    public static WeakHashMap<String, Object> getConfigurattons() {
+    public static WeakHashMap<Object, Object> getConfigurattons() {
         return Configurator.getInstance().getLatteConfigs();
     }
     public static Context getApplication(){
-        return (Context) getConfigurattons().get(ConfigTYpe.APPLICATION_CONTEXT.name());
+        return (Context) getConfigurattons().get(ConfigTYpe.APPLICATION_CONTEXT);
     }
 
-    public static Context getApplicationContext(){
-        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT.name());
 
-    }
 
 
 }

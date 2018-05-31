@@ -24,6 +24,7 @@ public class RestClientBuilder {
 
     private String mURL;
     private static final Map<String, Object> PARAMS = RestCreator.getParams();
+
     private IRequest mIRequest = null;
     private ISuccess mISuccess = null;
     private IFailure mIFailure = null;
@@ -32,6 +33,10 @@ public class RestClientBuilder {
     private File mFile;
     private  Context mContext = null;
     private  LoaderStyle mLoaderStyle = null;
+
+    private  String mDownloadDir = null;
+    private  String mExtension = null;
+    private  String mName = null;
 
 
     public RestClientBuilder() {
@@ -59,6 +64,18 @@ public class RestClientBuilder {
     public final RestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
 
+        return this;
+    }
+    public final RestClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+    public final RestClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+    public final RestClientBuilder name(String name) {
+        this.mName = name;
         return this;
     }
 
@@ -107,9 +124,11 @@ public class RestClientBuilder {
         this.mLoaderStyle=LoaderStyle.BallClipRotateIndicator;
         return this;
     }
-
+/*** private final String mDownloadDir = null;
+ private final String mExtension = null;
+ private final String mName = null;**/
     public final RestClient builder() {
-        return new RestClient(mURL, PARAMS, mIRequest, mISuccess
+        return new RestClient(mURL, PARAMS,mDownloadDir,mExtension,mName, mIRequest, mISuccess
                 , mIFailure, mIError, mBody,mFile, mContext, mLoaderStyle);
     }
 

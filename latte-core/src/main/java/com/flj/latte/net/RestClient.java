@@ -8,6 +8,7 @@ import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.IRequest;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.net.callback.RequestCallbacks;
+import com.flj.latte.net.download.DownloadHandler;
 import com.flj.latte.ui.LatteLoader;
 import com.flj.latte.ui.LoaderStyle;
 
@@ -30,6 +31,10 @@ public class RestClient {
     private final String URL;
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final IRequest REQUEST;
+
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
@@ -39,10 +44,16 @@ public class RestClient {
     private final File FILE;
     private final Context CONTEXT;
 
-    public RestClient(String URL, Map<String, Object> params, IRequest request, ISuccess success, IFailure failure, IError error,
+    public RestClient(String URL, Map<String, Object> params,
+                      String downloadDir,
+                      String extension,
+                      String name, IRequest request, ISuccess success, IFailure failure, IError error,
                       RequestBody body, File file, Context context, LoaderStyle loaderStyle) {
         this.URL = URL;
         PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
 
         this.REQUEST = request;
         this.SUCCESS = success;
@@ -92,7 +103,7 @@ public class RestClient {
             case UOLOAD:
                 final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
                 final MultipartBody.Part body = MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
-                call =RestCreator.getRestService().upload(URL,body);
+                call = RestCreator.getRestService().upload(URL, body);
 
 
                 break;
@@ -147,6 +158,17 @@ public class RestClient {
 
     }
 
+    public void upload() {
+        resuest(HttpMethod.UPLOAD);
+
+    }
+
+    public void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR,
+                EXTENSION, NAME, SUCCESS,
+                FAILURE, ERROR).handleDownload();
+
+    }
 
 
 }
