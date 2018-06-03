@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.flj.latte.delegates.latteDelegate;
+import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
@@ -17,7 +16,7 @@ import com.flj.latte.net.callback.ISuccess;
  * Created by Administrator on 2018\5\24 0024.
  */
 
-public class ExampleDelagate extends latteDelegate {
+public class ExampleDelagate extends LatteDelegate {
 
     @Override
     public Object setLayout() {
@@ -49,7 +48,7 @@ public class ExampleDelagate extends latteDelegate {
             public void onError(int code, String msg) {
 
             }
-        }).builder()
+        }).build()
                 .get();
     }
 }

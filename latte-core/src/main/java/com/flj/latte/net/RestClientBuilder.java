@@ -127,7 +127,7 @@ public class RestClientBuilder {
 /*** private final String mDownloadDir = null;
  private final String mExtension = null;
  private final String mName = null;**/
-    public final RestClient builder() {
+    public final RestClient build() {
         return new RestClient(mURL, PARAMS,mDownloadDir,mExtension,mName, mIRequest, mISuccess
                 , mIFailure, mIError, mBody,mFile, mContext, mLoaderStyle);
     }

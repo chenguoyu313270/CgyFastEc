@@ -1,13 +1,12 @@
 package com.flj.latte.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.ContentFrameLayout;
 import android.widget.Toast;
 
 import com.flj.latte.R;
-import com.flj.latte.delegates.latteDelegate;
+import com.flj.latte.delegates.LatteDelegate;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
@@ -16,7 +15,7 @@ import me.yokeyword.fragmentation.SupportActivity;
  */
 
 public abstract class ProxyActivity extends SupportActivity {
-    public abstract latteDelegate setRootDelegare();
+    public abstract LatteDelegate setRootDelegare();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
