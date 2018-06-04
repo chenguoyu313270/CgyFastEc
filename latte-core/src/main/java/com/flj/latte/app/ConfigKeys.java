@@ -4,7 +4,7 @@ package com.flj.latte.app;
  * Created by cguyu on 2018/5/13.
  */
 
-public enum ConfigTYpe {
+public enum ConfigKeys {
     API_HOST,
     APPLICATION_CONTEXT,
     CONFIG_READY,

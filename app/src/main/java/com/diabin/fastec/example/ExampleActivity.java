@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.flj.latte.activities.ProxyActivity;
+import com.flj.latte.app.Latte;
 import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.OnLauncherFinishTag;
@@ -27,6 +28,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         if (actionBar!=null){
             actionBar.hide();
         }
+        Latte.getConfigurator().withActivity(this);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.flj.latte.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -21,7 +23,7 @@ public class Configurator {
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();//拦截器
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigTYpe.APPLICATION_CONTEXT, false);
+        LATTE_CONFIGS.put(ConfigKeys.APPLICATION_CONTEXT, false);
     }
 
     public static Configurator getInstance() {
@@ -37,17 +39,17 @@ public class Configurator {
     }
 
     public final void configure() {
-        LATTE_CONFIGS.put(ConfigTYpe.CONFIG_READY, true);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigTYpe.API_HOST, host);
+        LATTE_CONFIGS.put(ConfigKeys.API_HOST, host);
         return this;
     }
 
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        LATTE_CONFIGS.put(ConfigTYpe.INTERCEPTORS, INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS, INTERCEPTORS);
 
         return this;
     }
@@ -55,13 +57,31 @@ public class Configurator {
     //
     public final Configurator withInterceptors(List<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
-        LATTE_CONFIGS.put(ConfigTYpe.INTERCEPTORS, INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS, INTERCEPTORS);
 
         return this;
     }
+    public final Configurator withWeChatAppId(String appId) {
+
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
+
+        return this;
+    }
+    public final Configurator withWeChatAppSecret(String appSecret) {
+
+        LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
+
+        return this;
+    }
+    //wx的activity
+    public final Configurator withActivity(Activity activity) {
+        LATTE_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
+        return this;
+    }
+
 
     private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigTYpe.CONFIG_READY);
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
 
         if (!isReady)
 

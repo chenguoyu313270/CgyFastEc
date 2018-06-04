@@ -2,7 +2,7 @@
 
 dir
 0
-https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS/trunk/CgyFastEc/latte-core/src/main/java/com/flj/latte
+https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS/trunk/CgyFastEc/latte-core/src/main/java/com/flj/latte/wechat
 https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS
 add
 
@@ -26,28 +26,28 @@ svn:special svn:externals svn:needs-lock
 
 09f66917-1fac-5044-8ec4-10524a1cb693
 
-net
-dir
+BaseWXActivity.java
+file
 
 
 
 add
 
-ui
-dir
+BaseWXEntryActivity.java
+file
 
 
 
 add
 
-util
-dir
+LatteWeChat.java
+file
 
 
 
 add
 
-wechat
+templates
 dir
 
 
