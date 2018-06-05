@@ -24,6 +24,7 @@ import javax.lang.model.element.TypeElement;
 /**
  * Created by Administrator on 2018\6\4 0004.
  */
+@SuppressWarnings("unused")
 @AutoService(Processor.class)
 public class LatteProcessor extends AbstractProcessor {
 
@@ -41,11 +42,11 @@ public class LatteProcessor extends AbstractProcessor {
         annotations.add(EntryGenerator.class);
         annotations.add(PayEntryGenerator.class);
         annotations.add(AppRegisterGenerator.class);
-
         return annotations;
     }
 
 
+    @Override
     public Set<String> getSupportedAnnotationTypes() {
         final Set<String> types = new LinkedHashSet<>();
         final Set<Class<? extends Annotation>> supportAnnotations = getSupportedAnnotations();
@@ -54,6 +55,7 @@ public class LatteProcessor extends AbstractProcessor {
         }
         return types;
     }
+
 
     private void scan(RoundEnvironment env,
                       Class<? extends Annotation> annotation,
@@ -80,11 +82,13 @@ public class LatteProcessor extends AbstractProcessor {
                 new EntryVisitor(processingEnv.getFiler());
         scan(env, EntryGenerator.class, entryVisitor);
     }
+
     private void generatePayEntryCode(RoundEnvironment env) {
         final PayEntryVisitor payEntryVisitor =
                 new PayEntryVisitor(processingEnv.getFiler());
         scan(env, PayEntryGenerator.class, payEntryVisitor);
     }
+
     private void generateAppRegisterCode(RoundEnvironment env) {
         final AppRegisterVisitor appRegisterVisitor =
                 new AppRegisterVisitor(processingEnv.getFiler());

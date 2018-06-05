@@ -6,12 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自动生成代码帮助类
-*@Target(ElementType.TYPE)
-*@Retention(RetentionPolicy.SOURCE)
+ *
  * Created by Administrator on 2018\6\4 0004.
  */
-//@Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
 public @interface EntryGenerator {

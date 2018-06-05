@@ -14,6 +14,8 @@ import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.util.log.LatteLogger;
+import com.flj.latte.wechat.LatteWeChat;
+import com.flj.latte.wechat.callbacks.IWeChatSignInCallback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,7 +26,7 @@ import example.fastec.diabin.com.latte_ec.R2;
  * Created by cguyu on 2018/6/2.
  */
 
-public class SignInDelegate extends LatteDelegate  {
+public class SignInDelegate extends LatteDelegate {
 
 
     @BindView(R2.id.edit_sign_in_email)
@@ -32,6 +34,15 @@ public class SignInDelegate extends LatteDelegate  {
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText mPassword = null;
 
+    @OnClick(R2.id.icon_sign_in_wechat)
+    void onClickWeChat() {
+        LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+
+            }
+        }).signIn();
+    }
 
 
     // 去注册
@@ -39,6 +50,7 @@ public class SignInDelegate extends LatteDelegate  {
     void onClickLink() {
         start(new SignUpDelegate());
     }
+
     private ISignListener mISignListener = null;
 
     @Override
@@ -48,7 +60,9 @@ public class SignInDelegate extends LatteDelegate  {
             mISignListener = (ISignListener) activity;
         }
     }
-    @OnClick(R2.id.btn_sign_in)//denglu
+
+    @OnClick(R2.id.btn_sign_in)
+//denglu
     void onClickSignIn() {
         mISignListener.onSignInSuccess();
 

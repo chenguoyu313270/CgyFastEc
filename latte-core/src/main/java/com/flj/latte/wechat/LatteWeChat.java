@@ -4,9 +4,11 @@ import android.app.Activity;
 
 import com.flj.latte.app.ConfigKeys;
 import com.flj.latte.app.Latte;
+import com.flj.latte.wechat.callbacks.IWeChatSignInCallback;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 //import com.tencent.mm.opensdk.openapi.IWXAPI;
 /**
@@ -17,7 +19,8 @@ public class LatteWeChat {
     public static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
     public static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
     private final IWXAPI WXAPI;
-//    private IWeChatSignInCallback mSignInCallback = null;
+
+    private IWeChatSignInCallback mSignInCallback=null;//微信登录后回调
 
     private static final class Holder {
         private static final LatteWeChat INSTANCE = new LatteWeChat();
@@ -30,9 +33,15 @@ public class LatteWeChat {
     public static LatteWeChat getInstance() {
         return Holder.INSTANCE;
     }
-//    public IWeChatSignInCallback getSignInCallback() {
-//        return mSignInCallback;
-//    }
+
+    public LatteWeChat onSignSuccess(IWeChatSignInCallback callback){
+        this.mSignInCallback=callback;
+        return this;
+    }
+
+    public IWeChatSignInCallback getSignInCallback(){
+        return mSignInCallback;
+    }
 
 //获取WXAPI 方法
     public final IWXAPI getWXAPI(){

@@ -32,7 +32,7 @@ public class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void
 
     @Override
     public Void visitType(TypeMirror t, Void p) {
-//        generateJavaCode(t);
+        generateJavaCode(t);
         return p;
     }
 
@@ -45,7 +45,7 @@ public class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void
                         .build();
       final JavaFile javaFile=JavaFile.
               builder(mPackageName+".wxapi",targetActivity)
-              .addFileComment("wcgbjsq")
+              .addFileComment("WXBroadcastReceiver ")
               .build();
       try {
           javaFile.writeTo(FILER);

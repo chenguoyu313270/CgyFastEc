@@ -31,16 +31,22 @@ public class EntryVisitor extends SimpleAnnotationValueVisitor7<Void,Void> {
         mPackageName=s;
         return p;
     }
+    @Override
+    public Void visitType(TypeMirror t, Void p) {
+        generateJavaCode(t);
+        return p;
+    }
+
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
-                TypeSpec.classBuilder("WXPayEntryActivity")
+                TypeSpec.classBuilder("WXEntryActivity")
                         .addModifiers(Modifier.PUBLIC)
                         .addModifiers(Modifier.FINAL)
                         .superclass(TypeName.get(typeMirror))
                         .build();
 
         final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
-                .addFileComment("微信支付入口文件")
+                .addFileComment("微信入口文件")
                 .build();
         try {
             javaFile.writeTo(FILER);

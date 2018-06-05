@@ -31,6 +31,12 @@ public class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void,Void> {
         mPackageName=s;
         return p;
     }
+
+    @Override
+    public Void visitType(TypeMirror t, Void p) {
+        generateJavaCode(t);
+        return p;
+    }
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
                 TypeSpec.classBuilder("WXPayEntryActivity")

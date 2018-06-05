@@ -6,6 +6,7 @@ import com.flj.latte.app.Latte;
 import com.flj.latte.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import example.fastec.diabin.com.latte_ec.database.DatabaseManager;
 import example.fastec.diabin.com.latte_ec.icon.FontEcModel;
 
 /**
@@ -22,8 +23,10 @@ public class ExampleApp extends Application {
 
                 .withApiHost("http://127.0.0.1/")
 //                .withInterceptor(new DebugInterceptor("test", R.raw.test))
+                .withWeChatAppId("")
+                .withWeChatAppSecret("")
                 .configure();
 
-
+        DatabaseManager.getInstance().init(this);//配置数据库
     }
 }
