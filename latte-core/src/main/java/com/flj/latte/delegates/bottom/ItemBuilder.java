@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
  */
 
 public final class ItemBuilder {
-    private final LinkedHashMap<BottomTabBean,BottomItemDelegate> ITEMS=new LinkedHashMap();
+    final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
     static ItemBuilder builder(){
         return new ItemBuilder();
     }

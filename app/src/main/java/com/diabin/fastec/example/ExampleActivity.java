@@ -9,14 +9,19 @@ import android.widget.Toast;
 import com.flj.latte.activities.ProxyActivity;
 import com.flj.latte.app.Latte;
 import com.flj.latte.delegates.LatteDelegate;
+import com.flj.latte.ec.launcher.LauncherDelegate;
+import com.flj.latte.ec.main.EcBottomDelegate;
+import com.flj.latte.ec.sign.ISignListener;
+import com.flj.latte.ec.sign.SignInDelegate;
 import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.OnLauncherFinishTag;
 
-import example.fastec.diabin.com.latte_ec.launcher.LauncherDelegate;
-import example.fastec.diabin.com.latte_ec.launcher.LauncherScrollDelegate;
-import example.fastec.diabin.com.latte_ec.sign.ISignListener;
-import example.fastec.diabin.com.latte_ec.sign.SignInDelegate;
-import example.fastec.diabin.com.latte_ec.sign.SignUpDelegate;
+//import example.fastec.diabin.com.latte_ec.launcher.LauncherDelegate;
+//import example.fastec.diabin.com.latte_ec.launcher.LauncherScrollDelegate;
+//import example.fastec.diabin.com.latte_ec.main.EcBottomDelegate;
+//import example.fastec.diabin.com.latte_ec.sign.ISignListener;
+//import example.fastec.diabin.com.latte_ec.sign.SignInDelegate;
+//import example.fastec.diabin.com.latte_ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener{
     private TextView mTextview;
@@ -65,8 +70,8 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-
-                startWithPop(new ExampleDelagate());
+                start(new EcBottomDelegate());
+//                startWithPop(new EcBottomDelegate());
 
 //                getSupportDelegate().startWithPop(new ExampleDelagate());
 //                getSupportDelegate().startWithPop(new EcBottomDelegate());

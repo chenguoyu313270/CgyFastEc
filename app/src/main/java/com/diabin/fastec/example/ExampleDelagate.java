@@ -12,6 +12,7 @@ import com.flj.latte.net.callback.IError;
 import com.flj.latte.net.callback.IFailure;
 import com.flj.latte.net.callback.ISuccess;
 
+
 /**
  * Created by Administrator on 2018\5\24 0024.
  */
@@ -28,15 +29,16 @@ public class ExampleDelagate extends LatteDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         testRestClient();
     }
-    private void testRestClient(){//ExampleDelagate 2499 http://news.baidu.com/
+
+    private void testRestClient() {//ExampleDelagate 2499 http://news.baidu.com/
         RestClient.builder().url("http://news.baidu.com/")
 //                .params("","")
-      .loader(getContext())
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
 
-                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
                     }
                 }).failure(new IFailure() {
             @Override

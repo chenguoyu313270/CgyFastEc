@@ -3,11 +3,13 @@ package com.diabin.fastec.example;
 import android.app.Application;
 
 import com.flj.latte.app.Latte;
+import com.flj.latte.ec.database.DatabaseManager;
+import com.flj.latte.ec.icon.FontEcModel;
 import com.flj.latte.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
-import example.fastec.diabin.com.latte_ec.database.DatabaseManager;
-import example.fastec.diabin.com.latte_ec.icon.FontEcModel;
+//import example.fastec.diabin.com.latte_ec.database.DatabaseManager;
+//import example.fastec.diabin.com.latte_ec.icon.FontEcModel;
 
 /**
  * Created by Administrator on 2018\5\23 0023.
