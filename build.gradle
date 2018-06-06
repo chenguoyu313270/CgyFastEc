@@ -22,6 +22,8 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+//        RecyclerAdapter框架
+        maven { url "https://jitpack.io" }
     }
 }
 

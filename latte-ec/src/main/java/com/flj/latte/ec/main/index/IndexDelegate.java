@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+
 import com.flj.latte.delegates.bottom.BottomItemDelegate;
 import com.flj.latte.ec.R;
 import com.flj.latte.ec.R2;

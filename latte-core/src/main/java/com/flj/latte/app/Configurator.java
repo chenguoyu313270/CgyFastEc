@@ -21,7 +21,7 @@ public class Configurator {
     //字体库
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
-    private static final Handler HANDLER = new Handler();
+    private static final Handler HANDLER = new Handler();//单例handle
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();//拦截器
 
     private Configurator() {
