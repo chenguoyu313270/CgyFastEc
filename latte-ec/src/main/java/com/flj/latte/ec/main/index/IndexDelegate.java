@@ -20,7 +20,7 @@ import butterknife.BindView;
 
 //import example.fastec.diabin.com.latte_ec.R;
 
-/**
+/** 首页-商品浏览
  * Created by Administrator on 2018\6\6 0006.
  */
 
