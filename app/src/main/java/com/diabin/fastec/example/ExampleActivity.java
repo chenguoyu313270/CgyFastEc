@@ -16,6 +16,8 @@ import com.flj.latte.ec.sign.SignInDelegate;
 import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 //import example.fastec.diabin.com.latte_ec.launcher.LauncherDelegate;
 //import example.fastec.diabin.com.latte_ec.launcher.LauncherScrollDelegate;
 //import example.fastec.diabin.com.latte_ec.main.EcBottomDelegate;
@@ -23,17 +25,20 @@ import com.flj.latte.ui.launcher.OnLauncherFinishTag;
 //import example.fastec.diabin.com.latte_ec.sign.SignInDelegate;
 //import example.fastec.diabin.com.latte_ec.sign.SignUpDelegate;
 
-public class ExampleActivity extends ProxyActivity implements ISignListener,ILauncherListener{
+public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
     private TextView mTextview;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ActionBar actionBar=getSupportActionBar();
-        if (actionBar!=null){
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        //设置沉浸式状态  StatusBarCompat.translucentStatusBar(this, true);
+        StatusBarCompat.translucentStatusBar(this, true);
+
     }
 
     @Override
@@ -56,12 +61,12 @@ public class ExampleActivity extends ProxyActivity implements ISignListener,ILau
 
     @Override
     public void onSignInSuccess() {
-        Toast.makeText(this,"denglu",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "denglu", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onSignUpSuccess() {
-        Toast.makeText(this,"zhucechenggong",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "zhucechenggong", Toast.LENGTH_LONG).show();
 
     }
 
