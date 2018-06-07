@@ -66,7 +66,8 @@ public class IndexDelegate extends BottomItemDelegate {
                 BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
 
         final EcBottomDelegate ecBottomDelegate = getParentDelegate();
-        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));//点击事件
+        //添加点击事件
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     //懒加载
@@ -75,7 +76,7 @@ public class IndexDelegate extends BottomItemDelegate {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
         initRecyclerView();
-        mRefreshHandler.firstPage("http://news.baidu.com/");
+        mRefreshHandler.firstPage("http://news.baidu.com/");//请求数据
     }
 
     @Override

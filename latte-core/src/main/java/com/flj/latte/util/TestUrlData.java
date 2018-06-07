@@ -1,11 +1,13 @@
 package com.flj.latte.util;
 
-/**  首页模拟数据
+/**
+ * 模拟数据
  * Created by Administrator on 2018\6\7 0007.
  */
 
 public class TestUrlData {
-    public static final String STR_INDEX_DELEGATE_DATA ="{\n" +
+    //    首页数据
+    public static final String STR_INDEX_DELEGATE_DATA = "{\n" +
             "    \"code\": 0,\n" +
             "    \"message\": \"ok\",\n" +
             "    \"total\": 100,\n" +

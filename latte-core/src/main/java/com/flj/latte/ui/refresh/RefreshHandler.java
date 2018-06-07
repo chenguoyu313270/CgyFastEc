@@ -70,7 +70,7 @@ public class RefreshHandler implements  SwipeRefreshLayout.OnRefreshListener
                     @Override
                     public void onSuccess(String response) {
                         Toast.makeText(Latte.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                        String mResponse= TestUrlData.STR_INDEX_DELEGATE_DATA;
+                        String mResponse= TestUrlData.STR_INDEX_DELEGATE_DATA;//本地模拟的 首页数据
                         final JSONObject object = JSON.parseObject(mResponse);
                         BEAN.setTotal(object.getInteger("total"))
                                 .setPageSize(object.getInteger("page_size"));
