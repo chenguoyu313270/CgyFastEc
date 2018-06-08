@@ -24,7 +24,7 @@ import qiu.niorgai.StatusBarCompat;
 //import example.fastec.diabin.com.latte_ec.sign.ISignListener;
 //import example.fastec.diabin.com.latte_ec.sign.SignInDelegate;
 //import example.fastec.diabin.com.latte_ec.sign.SignUpDelegate;
-
+//测试6.8 新路径
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
     private TextView mTextview;
 

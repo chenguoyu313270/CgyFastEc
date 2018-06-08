@@ -4,7 +4,7 @@ import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.flj.latte.R;
-//import com.flj.latte.ui.R;
+//import com.flj.Latte.ui.R;
 
 import java.util.ArrayList;
 
