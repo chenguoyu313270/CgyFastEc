@@ -54,4 +54,126 @@ public class TestUrlData {
             "        }\n" +
             "    ]\n" +
             "}";
+    // 分类目录数据
+    public static final String STR_SORT_DELEGATE_DATA = "{\n" +
+            "    \"code\": 0,\n" +
+            "    \"messsge\": \"ok\",\n" +
+            "    \"data\": {\n" +
+            "        \"list\": [\n" +
+            "            {\n" +
+            "                \"id\": \"1\",\n" +
+            "                \"name\": \"分类1\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"2\",\n" +
+            "                \"name\": \"分类2\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"3\",\n" +
+            "                \"name\": \"分类3\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"4\",\n" +
+            "                \"name\": \"分类4\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"5\",\n" +
+            "                \"name\": \"分类5\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"6\",\n" +
+            "                \"name\": \"分类6\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"7\",\n" +
+            "                \"name\": \"分类7\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"8\",\n" +
+            "                \"name\": \"分类8\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"9\",\n" +
+            "                \"name\": \"分类9\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"10\",\n" +
+            "                \"name\": \"分类7\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"11\",\n" +
+            "                \"name\": \"分类11\"\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"id\": \"12\",\n" +
+            "                \"name\": \"分类12\"\n" +
+            "            }\n" +
+            "        ]\n" +
+            "    }\n" +
+            "}";
+    public static final String ContentOne="{\n" +
+            "    \"code\": 0,\n" +
+            "    \"message\": \"ok\",\n" +
+            "    \"data\": [\n" +
+            "        {\n" +
+            "            \"id\": 1,\n" +
+            "            \"section\": \"品牌手机\",\n" +
+            "            \"goods\": [\n" +
+            "                {\n" +
+            "                    \"goods_id\": 3,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t17137/134/1253764714/149950/acf159b1/5ac1bf58Ndefaac16.jpg\",\n" +
+            "                    \"goods_name\": \"华为p20\"\n" +
+            "                },\n" +
+            "                {\n" +
+            "                    \"goods_id\": 4,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t19912/33/927199229/297549/8c269ff0/5b0fca0fN8d5600df.jpg\",\n" +
+            "                    \"goods_name\": \"小米8\"\n" +
+            "                },\n" +
+            "                {\n" +
+            "                    \"goods_id\": 5,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t21508/301/821572762/101344/c51f37a5/5b180123N38e50b96.jpg\",\n" +
+            "                    \"goods_name\": \"三星\"\n" +
+            "                },\n" +
+            "                {\n" +
+            "                    \"goods_id\": 6,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t10675/253/1344769770/66891/92d54ca4/59df2e7fN86c99a27.jpg\",\n" +
+            "                    \"goods_name\": \"苹果X\"\n" +
+            "                }\n" +
+            "            ]\n" +
+            "        }\n" +
+            "    ]\n" +
+            "}";
+
+    public static final String ContentTwo="{\n" +
+            "    \"code\": 0,\n" +
+            "    \"message\": \"ok\",\n" +
+            "    \"data\": [\n" +
+            "        {\n" +
+            "            \"id\": 2,\n" +
+            "            \"section\": \"笔记本\",\n" +
+            "            \"goods\": [\n" +
+            "                {\n" +
+            "                    \"goods_id\": 3,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t19927/295/1293855105/286852/8a99d32c/5b19e4ddN2991f6da.jpg\",\n" +
+            "                    \"goods_name\": \"机械笔记本\"\n" +
+            "                },\n" +
+            "                {\n" +
+            "                    \"goods_id\": 4,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t17083/327/2335382799/285989/d34a93fa/5af50e5fNa34f717e.jpg\",\n" +
+            "                    \"goods_name\": \"小米笔记本\"\n" +
+            "                },\n" +
+            "                {\n" +
+            "                    \"goods_id\": 5,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t17695/189/1800063307/223266/7f72f23e/5ad8525fN051e96d5.jpg\",\n" +
+            "                    \"goods_name\": \"华为笔记本\"\n" +
+            "                },\n" +
+            "                {\n" +
+            "                    \"goods_id\": 6,\n" +
+            "                    \"goods_thumb\": \"https://img14.360buyimg.com/n0/jfs/t16543/130/2251848241/118841/f7c9a6c0/5a9e2eceN52905226.jpg\",\n" +
+            "                    \"goods_name\": \"戴尔笔记本\"\n" +
+            "                }\n" +
+            "            ]\n" +
+            "        }\n" +
+            "    ]\n" +
+            "}";
 }

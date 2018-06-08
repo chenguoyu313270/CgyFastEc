@@ -32,6 +32,7 @@
             android:id="@+id/vertical_list_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:background="@color/app_background"
             android:layout_weight="1" />
 
         <android.support.v7.widget.ContentFrameLayout
