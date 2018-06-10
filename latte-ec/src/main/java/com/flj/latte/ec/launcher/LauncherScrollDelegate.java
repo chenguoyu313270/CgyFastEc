@@ -1,5 +1,6 @@
 package com.flj.latte.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +9,13 @@ import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.flj.latte.app.AccountManager;
+import com.flj.latte.app.IUserChecker;
 import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.ec.R;
+import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.LauncherHolderCreator;
+import com.flj.latte.ui.launcher.OnLauncherFinishTag;
 import com.flj.latte.ui.launcher.ScrollLauncherTag;
 import com.flj.latte.util.storage.LattePreference;
 
@@ -25,6 +30,8 @@ import java.util.ArrayList;
 public class LauncherScrollDelegate extends LatteDelegate implements OnItemClickListener {
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
+
+    private ILauncherListener mILauncherListener = null;
     private void initBanner() {
         if (!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
             INTEGERS.add(R.mipmap.launcher_01);
@@ -52,12 +59,37 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         initBanner();
     }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) activity;//注册 启动监听监听
+        }
+    }
 
     @Override
     public void onItemClick(int position) {
         Toast.makeText(getContext(), "position"+position, Toast.LENGTH_SHORT).show();
         if (position==INTEGERS.size()-1){
             LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(),true);
+
+            //检查用户是否已经登录
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
+
     }
 }

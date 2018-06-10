@@ -1,6 +1,8 @@
 package com.flj.latte.delegates.web;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -11,10 +13,11 @@ import android.webkit.WebView;
 
 public class WebViewInitializer {
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("SetJavaScriptEnabled")
     public WebView createWebView(WebView webView) {
 
-//        WebView.setWebContentsDebuggingEnabled(true);
+        WebView.setWebContentsDebuggingEnabled(true);
         //不能横向滚动
         webView.setHorizontalScrollBarEnabled(false);
         //不能纵向滚动
@@ -40,8 +43,8 @@ public class WebViewInitializer {
         settings.setSupportZoom(false);
         //文件权限
         settings.setAllowFileAccess(true);
-//        settings.setAllowFileAccessFromFileURLs(true);
-//        settings.setAllowUniversalAccessFromFileURLs(true);
+        settings.setAllowFileAccessFromFileURLs(true);
+        settings.setAllowUniversalAccessFromFileURLs(true);
         settings.setAllowContentAccess(true);
         //缓存相关
         settings.setAppCacheEnabled(true);
