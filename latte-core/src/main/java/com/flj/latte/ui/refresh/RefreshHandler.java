@@ -19,7 +19,7 @@ import com.flj.latte.util.log.LatteLogger;
  * Created by Administrator on 2018\6\6 0006.
  */
 
-public class RefreshHandler implements  SwipeRefreshLayout.OnRefreshListener
+public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
         , BaseQuickAdapter.RequestLoadMoreListener {
 
     private final SwipeRefreshLayout REFRESH_LAYOUT;
@@ -37,22 +37,25 @@ public class RefreshHandler implements  SwipeRefreshLayout.OnRefreshListener
         this.BEAN = bean;
         REFRESH_LAYOUT.setOnRefreshListener(this);
     }
+
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
                                         RecyclerView recyclerView, DataConverter converter) {
         return new RefreshHandler(swipeRefreshLayout, recyclerView, converter, new PagingBean());
     }
+
     @Override
     public void onRefresh() {
         REFRESH_LAYOUT.setRefreshing(true);//开始下拉
-      Latte.getHandler().postDelayed(new Runnable() {
+        Latte.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 REFRESH_LAYOUT.setRefreshing(false);//结束下拉
 //                firstPage("http://news.baidu.com/");
             }
-        },2000);
+        }, 2000);
 
     }
+
     public void firstPage(String url) {
 //        RestClient.builder()
 //                .url(url)
@@ -70,7 +73,7 @@ public class RefreshHandler implements  SwipeRefreshLayout.OnRefreshListener
                     @Override
                     public void onSuccess(String response) {
                         Toast.makeText(Latte.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                        String mResponse= TestUrlData.STR_INDEX_DELEGATE_DATA;//本地模拟的 首页数据
+                        String mResponse = TestUrlData.STR_INDEX_DELEGATE_DATA;//本地模拟的 首页数据
                         final JSONObject object = JSON.parseObject(mResponse);
                         BEAN.setTotal(object.getInteger("total"))
                                 .setPageSize(object.getInteger("page_size"));
@@ -84,6 +87,7 @@ public class RefreshHandler implements  SwipeRefreshLayout.OnRefreshListener
                 .build()
                 .get();
     }
+
     private void paging(final String url) {
         final int pageSize = BEAN.getPageSize();
         final int currentCount = BEAN.getCurrentCount();
@@ -118,10 +122,13 @@ public class RefreshHandler implements  SwipeRefreshLayout.OnRefreshListener
     }
 
 
-
-
     @Override
     public void onLoadMoreRequested() {
         paging("refresh.php?index=");
+
+
+
     }
+
+
 }
