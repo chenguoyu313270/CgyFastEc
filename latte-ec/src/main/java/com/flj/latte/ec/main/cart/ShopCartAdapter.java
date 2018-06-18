@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -41,7 +42,8 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 //添加购物测item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
-//设置是否全选中
+
+    //设置是否全选中
     public void setIsSelectedAll(boolean isSelectAll) {
         this.mIsSelectedAll = isSelectAll;
     }
@@ -104,7 +106,61 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     }
                 });
 
-
+                //添加加减事件 --
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        if (Integer.parseInt(tvCount.getText().toString()) > 1) {
+                            RestClient.builder()
+                                    .url("http://news.baidu.com/")
+                                    .loader(mContext)
+                                    .params("count", currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            Toast.makeText(mContext, "减一成功！", Toast.LENGTH_SHORT).show();
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+//                                            if (mCartItemListener != null) {
+//                                                mTotalPrice = mTotalPrice - price;
+//                                                final double itemTotal = countNum * price;
+//                                                mCartItemListener.onItemClick(itemTotal);
+//                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .post();
+                        }
+                    }
+                });
+                //++
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        RestClient.builder()
+                                .url("shop_cart_count.php")
+                                .loader(mContext)
+                                .params("count", currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(tvCount.getText().toString());
+                                        countNum++;
+                                        tvCount.setText(String.valueOf(countNum));
+//                                        if (mCartItemListener != null) {
+//                                            mTotalPrice = mTotalPrice + price;
+//                                            final double itemTotal = countNum * price;
+//                                            mCartItemListener.onItemClick(itemTotal);
+//                                        }
+                                    }
+                                })
+                                .build()
+                                .post();
+                    }
+                });
                 break;
             default:
                 break;

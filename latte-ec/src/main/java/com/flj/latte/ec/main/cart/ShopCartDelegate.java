@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.flj.latte.delegates.bottom.BottomItemDelegate;
 import com.flj.latte.ec.R;
@@ -28,7 +31,7 @@ import butterknife.OnClick;
  * Created by cguyu on 2018/6/9.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     private ShopCartAdapter mAdapter = null;
     //购物车数量标记
     private int mCurrentCount = 0;
@@ -40,6 +43,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
 
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
+
     @OnClick(R2.id.icon_shop_cart_select_all)
     void onClickSelectAll() {
         final int tag = (int) mIconSelectAll.getTag();
@@ -57,15 +61,16 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
         }
     }
-//删除操作
+
+    //删除操作
     @OnClick(R2.id.tv_top_shop_cart_remove_selected)
     void onClickRemoveSelectedItem() {
-        final List<MultipleItemEntity> data=mAdapter.getData();
+        final List<MultipleItemEntity> data = mAdapter.getData();
         //要删除的数据
         final List<MultipleItemEntity> deleteEntities = new ArrayList<>();
-        for (MultipleItemEntity entity:data){
-            final boolean isSelected=entity.getField(ShopCartItemFields.IS_SELECTED);
-            if (isSelected){
+        for (MultipleItemEntity entity : data) {
+            final boolean isSelected = entity.getField(ShopCartItemFields.IS_SELECTED);
+            if (isSelected) {
                 deleteEntities.add(entity);
             }
         }
@@ -87,9 +92,39 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
         }
 
 
-
-
     }
+
+    //清空购物车
+    @OnClick(R2.id.tv_top_shop_cart_clear)
+    void onClickClear() {
+        mAdapter.getData().clear();
+        mAdapter.notifyDataSetChanged();
+        checkItemCount();
+    }
+
+    //去购物 布局
+    @BindView(R2.id.stub_no_item)
+    ViewStubCompat mStubNoItem = null;
+
+    @SuppressWarnings("RestrictedApi")
+    private void checkItemCount() {
+        final int count = mAdapter.getItemCount();
+        if (count == 0) {
+            final View stubView = mStubNoItem.inflate();
+            final AppCompatTextView tvToBuy =
+                    (AppCompatTextView) stubView.findViewById(R.id.tv_stub_to_buy);
+            tvToBuy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "你该购物啦！", Toast.LENGTH_SHORT).show();
+                }
+            });
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_shop_cart;
@@ -99,6 +134,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         mIconSelectAll.setTag(0);//设置默认值tag 0
     }
+
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
@@ -112,14 +148,14 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
 
     @Override
     public void onSuccess(String response) {
-        String testShopCartData= TestUrlData.ShopCartData;
+        String testShopCartData = TestUrlData.ShopCartData;
         final ArrayList<MultipleItemEntity> data =
                 new ShopCartDataConverter()
                         .setJsonData(testShopCartData)
                         .convert();
         mAdapter = new ShopCartAdapter(data);
 //        mAdapter.setCartItemListener(this);
-        final LinearLayoutManager mangaer=new LinearLayoutManager(getContext());//设置辅助器
+        final LinearLayoutManager mangaer = new LinearLayoutManager(getContext());//设置辅助器
         mRecyclerView.setLayoutManager(mangaer);
         mRecyclerView.setAdapter(mAdapter);
 
