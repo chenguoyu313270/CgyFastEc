@@ -176,4 +176,75 @@ public class TestUrlData {
             "        }\n" +
             "    ]\n" +
             "}";
+    public static final String ShopCartData="{\n" +
+            "    \"code\": 0,\n" +
+            "    \"message\": \"ok\",\n" +
+            "    \"data\": [\n" +
+            "        {\n" +
+            "            \"title\": \"商品标签1\",\n" +
+            "            \"desc\": \"商品的详细描述1\",\n" +
+            "            \"id\": 1,\n" +
+            "            \"price\": 80,\n" +
+            "            \"count\": 2,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t18157/222/1822300674/231514/6c179af8/5ad87390N086a3c91.jpg\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"title\": \"商品标签2\",\n" +
+            "            \"desc\": \"商品的详细描述2\",\n" +
+            "            \"id\": 2,\n" +
+            "            \"price\": 180,\n" +
+            "            \"count\": 2,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21415/332/642302956/189613/778f2021/5b13cd6cN8e12d4aa.jpg\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"title\": \"商品标签3\",\n" +
+            "            \"desc\": \"商品的详细描述3\",\n" +
+            "            \"id\": 3,\n" +
+            "            \"price\": 380,\n" +
+            "            \"count\": 2,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21685/59/755444008/272149/fdafea5c/5b179de1N7c4f66b6.jpg\"\n" +
+            "        },\n" +
+            "\t\t{\n" +
+            "            \"title\": \"商品标签3\",\n" +
+            "            \"desc\": \"商品的详细描述2\",\n" +
+            "            \"id\": 3,\n" +
+            "            \"price\": 180,\n" +
+            "            \"count\": 3,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21415/332/642302956/189613/778f2021/5b13cd6cN8e12d4aa.jpg\"\n" +
+            "        },\n" +
+            "\t\t{\n" +
+            "            \"title\": \"商品标签4\",\n" +
+            "            \"desc\": \"商品的详细描述4\",\n" +
+            "            \"id\": 4,\n" +
+            "            \"price\": 180,\n" +
+            "            \"count\": 4,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21415/332/642302956/189613/778f2021/5b13cd6cN8e12d4aa.jpg\"\n" +
+            "        },\n" +
+            "\t\t{\n" +
+            "            \"title\": \"商品标签5\",\n" +
+            "            \"desc\": \"商品的详细描述5\",\n" +
+            "            \"id\": 5,\n" +
+            "            \"price\": 180,\n" +
+            "            \"count\": 5,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21415/332/642302956/189613/778f2021/5b13cd6cN8e12d4aa.jpg\"\n" +
+            "        },\n" +
+            "\t\t{\n" +
+            "            \"title\": \"商品标签6\",\n" +
+            "            \"desc\": \"商品的详细描述6\",\n" +
+            "            \"id\": 6,\n" +
+            "            \"price\": 180,\n" +
+            "            \"count\": 6,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21415/332/642302956/189613/778f2021/5b13cd6cN8e12d4aa.jpg\"\n" +
+            "        },\n" +
+            "\t\t{\n" +
+            "            \"title\": \"商品标签7\",\n" +
+            "            \"desc\": \"商品的详细描述7\",\n" +
+            "            \"id\": 7,\n" +
+            "            \"price\": 180,\n" +
+            "            \"count\": 7,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21415/332/642302956/189613/778f2021/5b13cd6cN8e12d4aa.jpg\"\n" +
+            "        }\n" +
+            "\t\t\n" +
+            "    ]\n" +
+            "}";
 }
