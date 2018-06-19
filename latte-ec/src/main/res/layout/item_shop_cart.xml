@@ -91,8 +91,8 @@
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/icon_item_plus"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:text="{fa-plus-square-o}"
             android:textSize="24sp"

@@ -12,17 +12,22 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.flj.latte.delegates.bottom.BottomItemDelegate;
 import com.flj.latte.ec.R;
 import com.flj.latte.ec.R2;
+import com.flj.latte.ec.pay.FastPayDialog;
+import com.flj.latte.ec.pay.IAlPayResultListener;
 import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.ui.recycler.MultipleItemEntity;
 import com.flj.latte.util.TestUrlData;
+import com.flj.latte.util.log.LatteLogger;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,7 +36,7 @@ import butterknife.OnClick;
  * Created by cguyu on 2018/6/9.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener {
     private ShopCartAdapter mAdapter = null;
     //购物车数量标记
     private int mCurrentCount = 0;
@@ -43,6 +48,8 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
 
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
+    @BindView(R2.id.tv_shop_cart_total_price)//总价
+            AppCompatTextView mTvTotalPrice = null;
 
     @OnClick(R2.id.icon_shop_cart_select_all)
     void onClickSelectAll() {
@@ -154,11 +161,93 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
                         .setJsonData(testShopCartData)
                         .convert();
         mAdapter = new ShopCartAdapter(data);
-//        mAdapter.setCartItemListener(this);
+        mAdapter.setCartItemListener(this);
         final LinearLayoutManager mangaer = new LinearLayoutManager(getContext());//设置辅助器
         mRecyclerView.setLayoutManager(mangaer);
         mRecyclerView.setAdapter(mAdapter);
 
+        mTotalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+        checkItemCount();
+
 
     }
+
+    //商品++-- 回调
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+        final double price = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(price));
+
+    }
+     @OnClick(R2.id.tv_shop_cart_pay)//支付按钮
+    void onClickPay() {
+//        FastPayDialog.create(this).beginPayDialog();
+        createOrder();
+    }
+
+    //创建订单，注意，和支付是没有关系的
+    private void createOrder() {
+//        final String orderUrl = "自己的生成订单的API";//http://app.api.zanzuanshi.com/api/v1/peyment
+        final String orderUrl = "http://app.api.zanzuanshi.com/api/v1/peyment";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userid","364392");//自己的支付id
+        orderParams.put("amount","0.001");//
+        orderParams.put("comment","测试支付");//
+        orderParams.put("type",1);//
+        orderParams.put("ordertype",0);//
+        orderParams.put("isanonymous",true);//
+        orderParams.put("followeduser",0);//
+
+        //加入你的参数
+        RestClient.builder()
+                .url(orderUrl)
+                .loader(getContext())
+                .params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(getContext(), "创建订单成功！"+response, Toast.LENGTH_SHORT).show();
+
+                        //进行具体的支付
+                        LatteLogger.d("ORDER", response);
+                        final int orderId = JSON.parseObject(response).getInteger("result");//和后台商量定义的 数据格式 去爱你后端的约定
+                        FastPayDialog.create(ShopCartDelegate.this)
+                                .setPayResultListener(mIAlPayResultListener)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
+                    }
+                })
+                .build()
+                .post();
+
+    }
+    //支付的回调结果
+    IAlPayResultListener mIAlPayResultListener=new IAlPayResultListener(){
+
+        @Override
+        public void onPaySuccess() {
+
+        }
+
+        @Override
+        public void onPaying() {
+
+        }
+
+        @Override
+        public void onPayFail() {
+
+        }
+
+        @Override
+        public void onPayCancel() {
+
+        }
+
+        @Override
+        public void onPayConnectError() {
+
+        }
+    };
 }

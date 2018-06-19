@@ -30,6 +30,8 @@ import butterknife.OnClick;
  */
 
 public class ShopCartAdapter extends MultipleRecyclerAdapter {
+    private ICartItemListener mCartItemListener = null;
+    private double mTotalPrice = 0.00;
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
@@ -38,9 +40,19 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     public ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
-
-//添加购物测item布局
+       //初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double total = price * count;
+            mTotalPrice = mTotalPrice + total;
+        }
+        //添加购物测item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
+    }
+
+    public void setCartItemListener(ICartItemListener listener) {
+        mCartItemListener = listener;
     }
 
     //设置是否全选中
@@ -123,11 +135,11 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                             int countNum = Integer.parseInt(tvCount.getText().toString());
                                             countNum--;
                                             tvCount.setText(String.valueOf(countNum));
-//                                            if (mCartItemListener != null) {
-//                                                mTotalPrice = mTotalPrice - price;
-//                                                final double itemTotal = countNum * price;
-//                                                mCartItemListener.onItemClick(itemTotal);
-//                                            }
+                                            if (mCartItemListener != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListener.onItemClick(itemTotal);
+                                            }
                                         }
                                     })
                                     .build()
@@ -141,7 +153,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     public void onClick(View v) {
                         final int currentCount = entity.getField(ShopCartItemFields.COUNT);
                         RestClient.builder()
-                                .url("shop_cart_count.php")
+                                .url("http://news.baidu.com/")
                                 .loader(mContext)
                                 .params("count", currentCount)
                                 .success(new ISuccess() {
@@ -150,20 +162,24 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                                         int countNum = Integer.parseInt(tvCount.getText().toString());
                                         countNum++;
                                         tvCount.setText(String.valueOf(countNum));
-//                                        if (mCartItemListener != null) {
-//                                            mTotalPrice = mTotalPrice + price;
-//                                            final double itemTotal = countNum * price;
-//                                            mCartItemListener.onItemClick(itemTotal);
-//                                        }
+                                        if (mCartItemListener != null) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemListener.onItemClick(itemTotal);
+                                        }
                                     }
                                 })
                                 .build()
                                 .post();
                     }
                 });
+
                 break;
             default:
                 break;
         }
+    }
+    public double getTotalPrice(){
+        return mTotalPrice;
     }
 }

@@ -2,7 +2,7 @@
 
 dir
 0
-https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS/trunk/CgyFastEc/latte-ec
+https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS/trunk/CgyFastEc/latte-ec/libs
 https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS
 add
 
@@ -26,17 +26,17 @@ svn:special svn:externals svn:needs-lock
 
 09f66917-1fac-5044-8ec4-10524a1cb693
 
-libs
-dir
+alipaySdk-20161222.jar
+file
 
 
 
 add
-
-src
-dir
 
 
 
-add
+
+
+has-props
+has-prop-mods
 
