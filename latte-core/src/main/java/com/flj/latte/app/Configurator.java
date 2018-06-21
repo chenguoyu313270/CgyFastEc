@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -45,6 +46,7 @@ public class Configurator {
     }
 
     public final void configure() {
+        Utils.init(Latte.getApplicationContext());//加载 com.blankj.utilcode.util; 工具
         initIcons();
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
     }

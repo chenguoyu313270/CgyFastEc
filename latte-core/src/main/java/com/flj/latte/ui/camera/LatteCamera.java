@@ -1,0 +1,23 @@
+package com.flj.latte.ui.camera;
+
+import android.net.Uri;
+
+import com.flj.latte.delegates.PermissionCheckerDelegate;
+import com.flj.latte.util.file.FileUtil;
+
+/**
+ * Created by Administrator on 2018\6\21 0021.
+ */
+
+public class LatteCamera {
+    public static Uri createCropFile() {
+        return Uri.parse
+                (FileUtil.createFile("crop_image",
+                        FileUtil.getFileNameByTime("IMG", "jpg")).getPath());
+    }
+    public static void start(PermissionCheckerDelegate delegate) {
+        new CameraHandler(delegate).beginCameraDialog();
+    }
+
+
+}

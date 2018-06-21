@@ -1,0 +1,56 @@
+10
+
+dir
+0
+https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS/trunk/CgyFastEc/latte-core/src/main/java/com/flj/latte/ui/camera
+https://192.168.1.69/svn/GongChangJiaJuAPP-ForAS
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+09f66917-1fac-5044-8ec4-10524a1cb693
+
+CameraHandler.java
+file
+
+
+
+add
+
+CameraImageBean.java
+file
+
+
+
+add
+
+LatteCamera.java
+file
+
+
+
+add
+
+RequestCodes.java
+file
+
+
+
+add
+
