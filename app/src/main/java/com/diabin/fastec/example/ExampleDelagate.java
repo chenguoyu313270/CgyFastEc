@@ -53,4 +53,5 @@ public class ExampleDelagate extends LatteDelegate {
         }).build()
                 .get();
     }
+
 }

@@ -46,9 +46,10 @@ public class Configurator {
     }
 
     public final void configure() {
-        Utils.init(Latte.getApplicationContext());//加载 com.blankj.utilcode.util; 工具
+
         initIcons();
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        Utils.init(Latte.getApplicationContext());//加载 com.blankj.utilcode.util; 工具 放在之后
     }
 
     public final Configurator withApiHost(String host) {

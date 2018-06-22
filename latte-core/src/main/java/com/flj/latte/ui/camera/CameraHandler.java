@@ -58,6 +58,8 @@ public class CameraHandler implements View.OnClickListener{
         return FileUtil.getFileNameByTime("IMG", "jpg");
     }
     //拍照
+
+
     private void takePhoto() {
         final String currentPhotoName = getPhotoName();
         final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -65,12 +67,15 @@ public class CameraHandler implements View.OnClickListener{
 
         //兼容7.0及以上的写法
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+
+
+
             final ContentValues contentValues = new ContentValues(1);
             contentValues.put(MediaStore.Images.Media.DATA, tempFile.getPath());
             final Uri uri = DELEGATE.getContext().getContentResolver().
                     insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-            //需要讲Uri路径转化为实际路径
-//            //工具包 来自 compile 'com.blankj:utilcode:1.7.1'
+            //需要讲Uri路径转化为实际路径    //工具包 来自 compile 'com.blankj:utilcode:1.7.1'
             final File realFile =
                     FileUtils.getFileByPath(FileUtil.getRealFilePath(DELEGATE.getContext(), uri));
             final Uri realUri = Uri.fromFile(realFile);
@@ -83,6 +88,7 @@ public class CameraHandler implements View.OnClickListener{
         }
         DELEGATE.startActivityForResult(intent, RequestCodes.TAKE_PHOTO);
     }
+
 //    选择图片
     private void pickPhoto() {
         final Intent intent = new Intent();
@@ -98,10 +104,10 @@ public class CameraHandler implements View.OnClickListener{
         if (id == R.id.photodialog_btn_cancel) {
             DIALOG.cancel();
         } else if (id == R.id.photodialog_btn_take) {
-//            takePhoto();
+            takePhoto();
             DIALOG.cancel();
         } else if (id == R.id.photodialog_btn_native) {
-//            pickPhoto();
+            pickPhoto();
             DIALOG.cancel();
         }
 

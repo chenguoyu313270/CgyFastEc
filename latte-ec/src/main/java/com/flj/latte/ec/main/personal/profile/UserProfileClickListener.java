@@ -1,17 +1,29 @@
 package com.flj.latte.ec.main.personal.profile;
 
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.flj.latte.delegates.LatteDelegate;
 import com.flj.latte.ec.R;
 import com.flj.latte.ec.main.personal.list.ListBean;
 import com.flj.latte.ec.pay.PayResult;
+import com.flj.latte.net.RestClient;
+import com.flj.latte.net.callback.ISuccess;
+import com.flj.latte.ui.LatteLoader;
 import com.flj.latte.ui.date.DateDialogUtil;
+import com.flj.latte.util.callback.CallbackManager;
+import com.flj.latte.util.callback.CallbackType;
+import com.flj.latte.util.callback.IGlobalCallback;
+import com.flj.latte.util.log.LatteLogger;
 
 import java.util.List;
 
@@ -22,7 +34,7 @@ import java.util.List;
 
 public class UserProfileClickListener extends SimpleClickListener {
     private final LatteDelegate DELEGATE;
-    final String[] mGenders=new String[]{"男","女","保密"};
+    final String[] mGenders = new String[]{"男", "女", "保密"};
 
     public UserProfileClickListener(LatteDelegate latteDelegate) {
         this.DELEGATE = latteDelegate;
@@ -35,7 +47,55 @@ public class UserProfileClickListener extends SimpleClickListener {
         final int id = bean.getId();
         switch (id) {
             case 1:
+                //选择照片回调
+                CallbackManager.getInstance().
+                        addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
+                                    @Override
+                                    public void executeCallback(Uri args) {
+                                        LatteLogger.d("ON_CROP"+args);
+                                        Toast.makeText(DELEGATE.getContext(),"ON_CROP="+args,Toast.LENGTH_LONG).show();
+                                        final ImageView avatar = (ImageView) view.findViewById(R.id.img_arrow_avatar);
+                                        Glide.with(DELEGATE)
+                                                .load(args)
+                                                .into(avatar);
+//                                      //上传文件
+                                        RestClient.builder()
+                                                .url(UploadConfig.UPLOAD_IMG)//上传地址
+                                                .loader(DELEGATE.getContext())
+                                                .file(args.getPath())//文件地址
+                                                .success(new ISuccess() {
+                                                    @Override
+                                                    public void onSuccess(String response) {
+                                                        LatteLogger.d("ON_CROP_UPLOAD", response);
+                                                        final String path = JSON.parseObject(response).getJSONObject("result")
+                                                                .getString("path");
 
+                                                        //上传成功后更新 通知服务器更新信息
+                                                        RestClient.builder()
+                                                                .url("user_profile.php")
+                                                                .params("avatar", path)
+                                                                .loader(DELEGATE.getContext())
+                                                                .success(new ISuccess() {
+                                                                    @Override
+                                                                    public void onSuccess(String response) {
+                                                                        //获取更新后的用户信息，然后更新本地数据库
+                                                                        //没有本地数据的APP，每次打开APP都请求API，获取信息
+                                                                    }
+                                                                })
+                                                                .build()
+                                                                .post();
+                                                    }
+                                                })
+                                                .build()
+                                                .upload();
+
+
+
+                                    }
+                                }
+                        );
+                //开启选择照片方式
+                DELEGATE.startCameraWithCheck();
                 break;
             case 2:
 //                final LatteDelegate nameDelegate = bean.getDelegate();
@@ -55,7 +115,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                 });
                 break;
             case 4:
-                final DateDialogUtil dateDialogUtil=new DateDialogUtil();
+                final DateDialogUtil dateDialogUtil = new DateDialogUtil();
                 dateDialogUtil.setDateListener(new DateDialogUtil.IDateListener() {
                     @Override
                     public void onDateChange(String date) {
@@ -71,12 +131,14 @@ public class UserProfileClickListener extends SimpleClickListener {
 
         }
     }
+
     //自定义对话框。
     private void getGenderDialog(DialogInterface.OnClickListener listener) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(DELEGATE.getContext());
         builder.setSingleChoiceItems(mGenders, 0, listener);
         builder.show();
     }
+
     @Override
     public void onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
 
