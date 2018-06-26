@@ -8,6 +8,8 @@ import com.flj.latte.ec.icon.FontEcModel;
 import com.flj.latte.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 //import example.fastec.diabin.com.latte_ec.database.DatabaseManager;
 //import example.fastec.diabin.com.latte_ec.icon.FontEcModel;
 
@@ -32,5 +34,9 @@ public class ExampleApp extends Application {
                 .configure();
 
         DatabaseManager.getInstance().init(this);//配置数据库
+
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 }

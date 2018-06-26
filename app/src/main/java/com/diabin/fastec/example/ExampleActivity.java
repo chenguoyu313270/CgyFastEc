@@ -16,6 +16,7 @@ import com.flj.latte.ec.sign.SignInDelegate;
 import com.flj.latte.ui.launcher.ILauncherListener;
 import com.flj.latte.ui.launcher.OnLauncherFinishTag;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 //import example.fastec.diabin.com.latte_ec.launcher.LauncherDelegate;
@@ -52,10 +53,16 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
+        JPushInterface.onResume(this);
     }
 
 

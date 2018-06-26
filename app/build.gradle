@@ -9,6 +9,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//极光推送配置
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "8f9bf71af8013e07d9cebe52",
+                JPUSH_CHANNEL: "developer-default",
+        ]
     }
     buildTypes {
         release {
@@ -35,8 +45,9 @@ dependencies {
     provided project(':latte-annotations')
     annotationProcessor project(':latte-compiler')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
-
-
+    //极光推送 sdk
+    compile 'cn.jiguang.sdk:jpush:3.0.1'
+    compile 'cn.jiguang.sdk:jcore:1.1.0'
 
 
 }
