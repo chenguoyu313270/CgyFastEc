@@ -16,9 +16,11 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "8f9bf71af8013e07d9cebe52",
+                JPUSH_APPKEY : "8f9bf71af8013e07d9cebe52",//自己的项目包名称在极光推送平台注册的
                 JPUSH_CHANNEL: "developer-default",
         ]
+        //极光推送配置 结束
+
     }
     buildTypes {
         release {
