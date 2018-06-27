@@ -13,6 +13,7 @@ import com.flj.latte.ec.R2;
 import com.flj.latte.net.RestClient;
 import com.flj.latte.net.callback.ISuccess;
 import com.flj.latte.ui.recycler.MultipleItemEntity;
+import com.flj.latte.util.TestUrlData;
 import com.flj.latte.util.log.LatteLogger;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class AddressDelegate extends LatteDelegate implements ISuccess {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         RestClient.builder()
-                .url("address.php")
+                .url("http://news.baidu.com/")
                 .loader(getContext())
                 .success(this)
                 .build()
@@ -45,12 +46,13 @@ public class AddressDelegate extends LatteDelegate implements ISuccess {
 
     @Override
     public void onSuccess(String response) {
-        LatteLogger.d("AddressDelegate", response);
+//        LatteLogger.d("AddressDelegate", response);
+        String strRusult= TestUrlData.ADDRESS_DATA;
 
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
         final List<MultipleItemEntity> data =
-                new AddressDataConverter().setJsonData(response).convert();
+                new AddressDataConverter().setJsonData(strRusult).convert();
         final AddressAdapter addressAdapter = new AddressAdapter(data);
         mRecyclerView.setAdapter(addressAdapter);
     }

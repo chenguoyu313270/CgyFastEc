@@ -247,4 +247,38 @@ public class TestUrlData {
             "\t\t\n" +
             "    ]\n" +
             "}";
+    public static final String ADDRESS_DATA="{\n" +
+            "    \"code\": 0,\n" +
+            "    \"message\": \"ok\",\n" +
+            "    \"data\": [\n" +
+            "        {\n" +
+            "            \"id\": 1,\n" +
+            "            \"default\": true,\n" +
+            "            \"name\": \"姓名1\",\n" +
+            "            \"phone\": \"18855583012\",\n" +
+            "            \"address\": \"地址1\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"id\": 2,\n" +
+            "            \"default\": true,\n" +
+            "            \"name\": \"姓名2\",\n" +
+            "            \"phone\": \"18855583012\",\n" +
+            "            \"address\": \"地址1\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"id\": 3,\n" +
+            "            \"default\": true,\n" +
+            "            \"name\": \"姓名5\",\n" +
+            "            \"phone\": \"18855583012\",\n" +
+            "            \"address\": \"地址1\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"id\": 4,\n" +
+            "            \"default\": true,\n" +
+            "            \"name\": \"姓名4\",\n" +
+            "            \"phone\": \"18855583012\",\n" +
+            "            \"address\": \"地址4\"\n" +
+            "        }\n" +
+            "    ]\n" +
+            "}";
 }

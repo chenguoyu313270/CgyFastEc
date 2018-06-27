@@ -33,6 +33,10 @@ android {
 }
 
 dependencies {
+    //解决 sdk 26 和27冲突问题
+    androidTestCompile('com.android.support:support-annotations:26.1.0') {
+        force = true
+    }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'

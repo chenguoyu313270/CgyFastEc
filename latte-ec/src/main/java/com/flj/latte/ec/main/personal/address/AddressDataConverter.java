@@ -28,6 +28,8 @@ public class AddressDataConverter extends DataConverter {
             final String phone = data.getString("phone");
             final String address = data.getString("address");
             final boolean isDefault = data.getBoolean("default");
+            final float floatA = data.getFloat("default");
+
 
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setItemType(AddressItemType.ITEM_ADDRESS)
