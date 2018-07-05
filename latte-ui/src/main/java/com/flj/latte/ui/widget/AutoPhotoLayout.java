@@ -24,7 +24,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 
-/**
+/** 拍照
  * Created by 傅令杰
  */
 

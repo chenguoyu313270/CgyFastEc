@@ -32,7 +32,7 @@ import java.util.WeakHashMap;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
+/** 购物车
  * Created by cguyu on 2018/6/9.
  */
 

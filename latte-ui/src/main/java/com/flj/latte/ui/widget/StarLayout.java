@@ -8,13 +8,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
+//import com.flj.latte.ui.R;
 import com.flj.latte.ui.R;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by 傅令杰
+/** 123456
+ * Created by cgy
  */
 
 public class StarLayout extends LinearLayoutCompat implements View.OnClickListener {

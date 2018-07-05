@@ -17,6 +17,7 @@ import com.flj.latte.ec.main.personal.list.ListBean;
 import com.flj.latte.ec.main.personal.list.ListItemType;
 import com.flj.latte.ec.main.personal.order.OrderListDelegate;
 import com.flj.latte.ec.main.personal.profile.UserProfileDelegate;
+import com.flj.latte.ec.main.personal.setting.SettingsDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
-//                .setDelegate(new SettingsDelegate())
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
         List<ListBean> data = new ArrayList<>();
