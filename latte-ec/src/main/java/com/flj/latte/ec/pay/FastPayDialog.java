@@ -57,7 +57,7 @@ public class FastPayDialog implements View.OnClickListener {
         if (window != null) {
             window.setContentView(R.layout.dialog_pay_panel);
             window.setGravity(Gravity.BOTTOM);
-            window.setWindowAnimations(R.style.anim_panel_up_from_bottom);
+            window.setWindowAnimations(R.style.anim_panel_dialog_up_from_bottom2);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));//设置透明的
             //设置属性
             final WindowManager.LayoutParams params = window.getAttributes();

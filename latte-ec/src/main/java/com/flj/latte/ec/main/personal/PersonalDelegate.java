@@ -15,6 +15,7 @@ import com.flj.latte.ec.main.personal.address.AddressDelegate;
 import com.flj.latte.ec.main.personal.list.ListAdapter;
 import com.flj.latte.ec.main.personal.list.ListBean;
 import com.flj.latte.ec.main.personal.list.ListItemType;
+import com.flj.latte.ec.main.personal.order.OrderListDelegate;
 import com.flj.latte.ec.main.personal.profile.UserProfileDelegate;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class PersonalDelegate extends BottomItemDelegate {
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRvSettings = null;
 
+    public static final String ORDER_TYPE = "ORDER_TYPE";
+    private Bundle mArgs = null;
     @Override
     public Object setLayout() {
         return R.layout.delegate_personal;
@@ -66,6 +69,21 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setAdapter(adapter);
         mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
+    //点击全部订单
+    @OnClick(R2.id.tv_all_order)
+    void onClickAllOrder() {
+        mArgs.putString(ORDER_TYPE, "all");
+        startOrderListByType();
+    }
+    private void startOrderListByType() {
+        final OrderListDelegate delegate = new OrderListDelegate();
+        delegate.setArguments(mArgs);
+        getParentDelegate().getSupportDelegate().start(delegate);
+    }
 
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mArgs=new Bundle();
+    }
 }

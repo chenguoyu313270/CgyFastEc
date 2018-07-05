@@ -281,4 +281,32 @@ public class TestUrlData {
             "        }\n" +
             "    ]\n" +
             "}";
+    public static final String OrderList="{\n" +
+            "    \"code\": 0,\n" +
+            "    \"message\": \"ok\",\n" +
+            "    \"data\": [\n" +
+            "        {\n" +
+            "            \"id\": 1,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t7297/154/3413903491/65679/45ae4902/59e42830N9da56c41.jpg\",\n" +
+            "            \"title\": \"商品标题1\",\n" +
+            "            \"price\": 1,\n" +
+            "            \"time\": \"2018-01-01\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"id\": 2,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t21826/239/756934284/295397/2410a22a/5b179e27N68f4073f.jpg\",\n" +
+            "            \"title\": \"商品标题2\",\n" +
+            "            \"price\": 2,\n" +
+            "            \"time\": \"2018-01-01\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"id\": 3,\n" +
+            "            \"thumb\": \"https://img14.360buyimg.com/n0/jfs/t19894/268/1980448377/120742/af310a47/5b2cc683N4080162f.jpg\",\n" +
+            "            \"title\": \"商品标题3\",\n" +
+            "            \"price\": 8,\n" +
+            "            \"time\": \"2018-01-01\"\n" +
+            "        }\n" +
+            "    ]\n" +
+            "}";
+
 }
