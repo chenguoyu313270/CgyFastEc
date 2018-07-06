@@ -24,8 +24,8 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 
-/** 拍照
- * Created by 傅令杰
+/** 拍照 照片选择器
+ * Created by
  */
 
 public final class AutoPhotoLayout extends LinearLayoutCompat {
@@ -67,7 +67,7 @@ public final class AutoPhotoLayout extends LinearLayoutCompat {
     public AutoPhotoLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.camera_flow_layout);
-        mMaxNum = typedArray.getInt(R.styleable.camera_flow_layout_max_count, 1);
+        mMaxNum = typedArray.getInt(R.styleable.camera_flow_layout_max_count, 3);
         mMaxLineNum = typedArray.getInt(R.styleable.camera_flow_layout_line_count, 3);
         mImageMargin = typedArray.getInt(R.styleable.camera_flow_layout_item_margin, 0);
         mIconSize = typedArray.getDimension(R.styleable.camera_flow_layout_icon_size, 20);

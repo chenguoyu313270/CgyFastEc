@@ -1,5 +1,6 @@
 package com.flj.latte.ec.main.personal.list;
 
+import android.support.v7.widget.SwitchCompat;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +22,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .dontAnimate()
             .centerCrop();
+
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -32,7 +34,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
         addItemType(ListItemType.ITEM_NORMAL, R.layout.arrow_item_layout);//个人中心首页
         addItemType(ListItemType.ITEM_AVATAR, R.layout.arrow_item_avatar);
 
-        addItemType(ListItemType.ITEM_SWITCH,R.layout.arrow_switch_layout);
+        addItemType(ListItemType.ITEM_SWITCH, R.layout.arrow_switch_layout);
     }
 
     @Override
@@ -40,8 +42,8 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
         switch (helper.getItemViewType()) {
 
             case ListItemType.ITEM_NORMAL:
-                helper.setText(R.id.tv_arrow_text,item.getText());
-                helper.setText(R.id.tv_arrow_value,item.getText());
+                helper.setText(R.id.tv_arrow_text, item.getText());
+                helper.setText(R.id.tv_arrow_value, item.getText());
                 break;
             case ListItemType.ITEM_AVATAR://照片类头像
 
@@ -52,8 +54,13 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
                 break;
             case ListItemType.ITEM_SWITCH://切换类的
 
-                default:
-                    break;
+                helper.setText(R.id.tv_arrow_switch_text, item.getText());
+                final SwitchCompat switchCompat = helper.getView(R.id.list_item_switch);
+                switchCompat.setChecked(true);
+                switchCompat.setOnCheckedChangeListener(item.getmOnCheckedChangeListener());
+
+            default:
+                break;
 
         }
     }

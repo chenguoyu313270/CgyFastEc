@@ -18,6 +18,7 @@ import com.flj.latte.ec.main.personal.list.ListBean;
 import com.flj.latte.ec.main.personal.list.ListItemType;
 import com.flj.latte.util.callback.CallbackManager;
 import com.flj.latte.util.callback.CallbackType;
+import com.flj.latte.util.log.LatteLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by 傅令杰
+ * Created by cgy
  */
 
 public class SettingsDelegate extends LatteDelegate {
@@ -51,8 +52,10 @@ public class SettingsDelegate extends LatteDelegate {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
                             CallbackManager.getInstance().getCallback(CallbackType.TAG_OPEN_PUSH).executeCallback(null);
+                            LatteLogger.e("isChecked=11=",isChecked+"");
                             Toast.makeText(getContext(), "打开推送", Toast.LENGTH_SHORT).show();
                         } else {
+                            LatteLogger.e("isChecked=00=",isChecked+"");
                             CallbackManager.getInstance().getCallback(CallbackType.TAG_STOP_PUSH).executeCallback(null);
                             Toast.makeText(getContext(), "关闭推送", Toast.LENGTH_SHORT).show();
                         }

@@ -33,13 +33,14 @@ public class AboutDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         RestClient.builder()
-                .url("about.php")
+                .url("http://news.baidu.com/?tn=news")
                 .loader(getContext())
+
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        final String info = JSON.parseObject(response).getString("data");
-                        mTextView.setText(info);
+//                        final String info = JSON.parseObject(response).getString("data");
+                        mTextView.setText(response);
                     }
                 })
                 .build()
