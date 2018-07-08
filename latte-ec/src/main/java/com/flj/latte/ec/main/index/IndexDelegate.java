@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.flj.latte.delegates.bottom.BottomItemDelegate;
@@ -18,13 +19,18 @@ import com.flj.latte.ec.R2;
 import com.flj.latte.ec.main.EcBottomDelegate;
 import com.flj.latte.ui.recycler.BaseDecoration;
 import com.flj.latte.ui.refresh.RefreshHandler;
+import com.flj.latte.util.callback.CallbackManager;
+import com.flj.latte.util.callback.CallbackType;
+import com.flj.latte.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 //import example.fastec.diabin.com.latte_ec.R;
 
-/** 首页-商品浏览
+/**
+ * 首页-商品浏览
  * Created by Administrator on 2018\6\6 0006.
  */
 
@@ -45,7 +51,14 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         super.onBindView(savedInstanceState, rootView);
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+        //扫码接口回调
+        CallbackManager.getInstance().addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+            @Override
+            public void executeCallback(String args) {
+                Toast.makeText(getContext(), "得到的二维码是" + args, Toast.LENGTH_LONG).show();
 
+            }
+        });
 
     }
 
@@ -57,13 +70,14 @@ public class IndexDelegate extends BottomItemDelegate {
         );
         mRefreshLayout.setProgressViewOffset(true, 120, 300);
     }
+
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
 
         //分割线
         mRecyclerView.addItemDecoration(
-                BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
+                BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
 
         final EcBottomDelegate ecBottomDelegate = getParentDelegate();
         //添加点击事件
@@ -82,6 +96,12 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
+    }
+
+    //二维码扫描
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScaneOrCode() {
+        startScanWithCheck(this.getParentDelegate());
     }
 
 

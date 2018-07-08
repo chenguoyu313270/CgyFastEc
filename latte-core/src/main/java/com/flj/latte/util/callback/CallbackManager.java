@@ -2,7 +2,7 @@ package com.flj.latte.util.callback;
 
 import java.util.WeakHashMap;
 
-/**
+/** 全局接口回调管理
  * Created by 傅令杰
  */
 

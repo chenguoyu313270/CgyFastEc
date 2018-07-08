@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.flj.latte.ui.camera.CameraImageBean;
 import com.flj.latte.ui.camera.LatteCamera;
 import com.flj.latte.ui.camera.RequestCodes;
+import com.flj.latte.ui.scanner.ScannerDelagate;
 import com.flj.latte.util.callback.CallbackManager;
 import com.flj.latte.util.callback.CallbackType;
 import com.flj.latte.util.callback.IGlobalCallback;
@@ -30,7 +32,7 @@ import permissions.dispatcher.RuntimePermissions;
  */
 @RuntimePermissions
 public abstract class PermissionCheckerDelegate extends BaseDelegate {
-    //不是直接调用方法
+    //不是直接调用方法 拍照获取权限 生成代码
     @NeedsPermission(android.Manifest.permission.CAMERA)
     void start() {
         LatteCamera.start(this);
@@ -40,6 +42,18 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startWithCheck(this);
     }
+
+    //扫描二维码(不直接调用) 生成代码
+    @NeedsPermission(android.Manifest.permission.CAMERA)
+    public void startScan(BaseDelegate delegate) {
+        delegate.getSupportDelegate().startForResult(new ScannerDelagate(), RequestCodes.SCAN);
+
+    }
+    //真正扫码调用的方法。
+    public void startScanWithCheck(BaseDelegate delegate){
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithCheck(this,delegate);
+    }
+
 
     @OnPermissionDenied(Manifest.permission.CAMERA)
     void onCameraDenied() {
@@ -115,7 +129,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
 //                        callback.executeCallback(cropUri);
 //                    }
                     final Uri cropUri = UCrop.getOutput(data);
-                     //拿到剪裁后的数据进行处理
+                    //拿到剪裁后的数据进行处理
                     final IGlobalCallback<Uri> callback =
                             CallbackManager.getInstance().getCallback(CallbackType.ON_CROP);
                     if (callback != null) {
@@ -131,4 +145,18 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
             }
         }
     }
+
+//    @Override
+//    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+//        super.onFragmentResult(requestCode, resultCode, data);
+//        if (requestCode==RequestCodes.SCAN){
+//            final String qrCode=data.getString("SCAN_RESULT");
+//            //拿到剪裁后的数据进行处理
+//            final IGlobalCallback<String> callback =
+//                    CallbackManager.getInstance().getCallback(CallbackType.ON_SCAN);
+//            if (callback != null) {
+//                callback.executeCallback(qrCode);
+//            }
+//        }
+//    }
 }
