@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.mob.sdk'//配置分享sdk
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -34,6 +34,9 @@ android {
 //    }
 }
 
+
+
+
 dependencies {
     //解决 sdk 26 和27冲突问题
     androidTestCompile('com.android.support:support-annotations:26.1.0') {
@@ -57,3 +60,7 @@ dependencies {
 
 
 }
+
+
+
+

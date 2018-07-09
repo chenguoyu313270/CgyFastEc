@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.flj.latte.delegates.LatteDelegate;
-import com.flj.latte.ui.camera.RequestCodes;
 import com.flj.latte.util.callback.CallbackManager;
 import com.flj.latte.util.callback.CallbackType;
 import com.flj.latte.util.callback.IGlobalCallback;
+import com.flj.latte.util.log.LatteLogger;
 
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
@@ -19,6 +19,7 @@ import me.dm7.barcodescanner.zbar.ZBarScannerView;
  */
 
 public class ScannerDelagate extends LatteDelegate implements ZBarScannerView.ResultHandler {
+   public static final String TAG="ScannerDelagate";
     public ScanView mScanView = null;
 
     @Override
@@ -59,19 +60,19 @@ public class ScannerDelagate extends LatteDelegate implements ZBarScannerView.Re
         }
     }
 
-    //saoma监听回调
+    //扫码结果监听回调 实现 接口：ZBarScannerView.ResultHandler
     @Override
     public void handleResult(Result result) {
-
-
         @SuppressWarnings("unchecked")
         final IGlobalCallback<String> callback = CallbackManager
                 .getInstance()
                 .getCallback(CallbackType.ON_SCAN);
         if (callback != null) {
+            LatteLogger.e("ScannerDelagate","handleResult+");
             callback.executeCallback(result.getContents());
         }
-        getSupportDelegate().pop();
+
+        getSupportDelegate().pop();//立即返回 back
 
 
 

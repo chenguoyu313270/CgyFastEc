@@ -57,14 +57,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
     }
 
     public void firstPage(String url) {
-//        RestClient.builder()
-//                .url(url)
-//                .success(new ISuccess() {
-//                    @Override
-//                    public void onSuccess(String response) {
-//                        Toast.makeText(Latte.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-//                    }
-//                }).build().get();
 
         BEAN.setDelayed(1000);
         RestClient.builder()
@@ -101,13 +93,16 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener
                 @Override
                 public void run() {
                     RestClient.builder()
-                            .url(url + index)
+//                            .url(url + index)
+                            .url("http://news.baidu.com/")
                             .success(new ISuccess() {
                                 @Override
                                 public void onSuccess(String response) {
-                                    LatteLogger.json("paging", response);
+                                    String mResponse = TestUrlData.STR_INDEX_DELEGATE_DATA;//本地模拟的 首页数据
+                                    LatteLogger.json("paging", mResponse);
+
                                     CONVERTER.clearData();
-                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    mAdapter.addData(CONVERTER.setJsonData(mResponse).convert());
                                     //累加数量
                                     BEAN.setCurrentCount(mAdapter.getData().size());
                                     mAdapter.loadMoreComplete();

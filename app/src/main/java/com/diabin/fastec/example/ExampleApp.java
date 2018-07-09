@@ -10,6 +10,7 @@ import com.flj.latte.util.callback.CallbackManager;
 import com.flj.latte.util.callback.CallbackType;
 import com.flj.latte.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.mob.MobSDK;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -62,7 +63,7 @@ public class ExampleApp extends Application {
             }
         });
 
-
+        MobSDK.init(this);
 
     }
 }
