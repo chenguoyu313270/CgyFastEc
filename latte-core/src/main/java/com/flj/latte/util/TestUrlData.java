@@ -309,4 +309,16 @@ public class TestUrlData {
             "    ]\n" +
             "}";
 
+    public static final String goodsDetail="{\n" +
+            "    \"code\": 0,\n" +
+            "    \"message\": \"OK\",\n" +
+            "    \"data\": {\n" +
+            "        \"content\": \"内容描述\",\n" +
+            "        \"banners\": [\n" +
+            "            \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "            \"https://i8.mifile.cn/a1/pms_1529908829.55264318!560x560.jpg\",\n" +
+            "            \"https://i8.mifile.cn/a1/pms_1529908829.32647204!560x560.jpg\"\n" +
+            "        ]\n" +
+            "    }\n" +
+            "}";
 }

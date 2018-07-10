@@ -86,6 +86,6 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <!--<include layout="@layout/layout_goods_detail_bottom" />-->
+    <include layout="@layout/layout_goods_detail_bottom" />
 
 </RelativeLayout>
