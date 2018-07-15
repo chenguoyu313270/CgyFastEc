@@ -311,14 +311,42 @@ public class TestUrlData {
 
     public static final String goodsDetail="{\n" +
             "    \"code\": 0,\n" +
-            "    \"message\": \"OK\",\n" +
+            "    \"message\": \"ok\",\n" +
             "    \"data\": {\n" +
             "        \"content\": \"内容描述\",\n" +
             "        \"banners\": [\n" +
             "            \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
-            "            \"https://i8.mifile.cn/a1/pms_1529908829.55264318!560x560.jpg\",\n" +
+            "            \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
             "            \"https://i8.mifile.cn/a1/pms_1529908829.32647204!560x560.jpg\"\n" +
-            "        ]\n" +
+            "        ],\n" +
+            "        \"tabs\": [\n" +
+            "            {\n" +
+            "                \"name\": \"商品详情\",\n" +
+            "                \"pictures\": [\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908829.32647204!560x560.jpg\"\n" +
+            "                ]\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"name\": \"规格参数\",\n" +
+            "                \"pictures\": [\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908829.32647204!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908826.32918327!560x560.jpg\",\n" +
+            "                    \"https://i8.mifile.cn/a1/pms_1529908829.32647204!560x560.jpg\"\n" +
+            "                ]\n" +
+            "            }\n" +
+            "        ],\n" +
+            "        \"specifications\": \"规格参数\",\n" +
+            "        \"inventory\": \"商品中包含了哪些东西的清单\",\n" +
+            "        \"id\": 1,\n" +
+            "        \"name\": \"小米5从3GB+64GB 金色\",\n" +
+            "        \"description\": \"搭载彭拜S1 八核高性能处理器\",\n" +
+            "        \"price\": 12,\n" +
+            "        \"thumb\": \"https://i8.mifile.cn/a1/pms_1529908829.32647204!560x560.jpg\"\n" +
             "    }\n" +
             "}";
 }
