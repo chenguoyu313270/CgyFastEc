@@ -50,7 +50,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by Administrator on 2018\6\7 0007.
  */
 // BezierUtil.AnimationListener 飞入动画助手
-public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.OnOffsetChangedListener,BezierUtil.AnimationListener{
+public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.OnOffsetChangedListener, BezierUtil.AnimationListener {
 
     @BindView(R2.id.goods_detail_toolbar)
     Toolbar mToolbar = null;
@@ -87,7 +87,7 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
             .override(100, 100);
 
     @OnClick(R2.id.rl_add_shop_cart)
-    void onClickAddShopCart() {
+    void onClickAddShopCart() {//点击加入购物车飞入动画
         final CircleImageView animImg = new CircleImageView(getContext());
         Glide.with(this)
                 .load(mGoodsThumbUrl)
@@ -98,9 +98,9 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
 
     public static GoodsDetailDelegate create(int goodsId) {
 
-        final Bundle args=new Bundle();
-        args.putInt(ARG_GOODS_ID,goodsId);
-        final GoodsDetailDelegate delegate=new GoodsDetailDelegate();
+        final Bundle args = new Bundle();
+        args.putInt(ARG_GOODS_ID, goodsId);
+        final GoodsDetailDelegate delegate = new GoodsDetailDelegate();
         delegate.setArguments(args);
         return delegate;
     }
@@ -117,6 +117,7 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
         initData();
         initTabLayout();
     }
+
     private void initPager(JSONObject data) {
         final PagerAdapter adapter = new TabPagerAdapter(getFragmentManager(), data);
         mViewPager.setAdapter(adapter);
@@ -130,23 +131,25 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
         mTabLayout.setBackgroundColor(Color.WHITE);
         mTabLayout.setupWithViewPager(mViewPager);
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Bundle bundle=getArguments();
-        if (bundle!=null){
-            mGoodsId= bundle.getInt(ARG_GOODS_ID);
-            Toast.makeText(getContext(),"商品id="+mGoodsId,Toast.LENGTH_SHORT).show();
+        final Bundle bundle = getArguments();
+        if (bundle != null) {
+            mGoodsId = bundle.getInt(ARG_GOODS_ID);
+            Toast.makeText(getContext(), "商品id=" + mGoodsId, Toast.LENGTH_SHORT).show();
         }
 
 
-
     }
-//  AppBarLayout.OnOffsetChangedListener
+
+    //  AppBarLayout.OnOffsetChangedListener
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
     }
+
     private void initData() {
         RestClient.builder()
                 .url("http://news.baidu.com/")
@@ -155,7 +158,7 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        final String StrResponse= TestUrlData.goodsDetail;
+                        final String StrResponse = TestUrlData.goodsDetail;
                         final JSONObject data =
                                 JSON.parseObject(StrResponse).getJSONObject("data");
                         initBanner(data);
@@ -167,6 +170,7 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
                 .build()
                 .get();
     }
+
     private void initBanner(JSONObject data) {
         final JSONArray array = data.getJSONArray("banners");
         final List<String> images = new ArrayList<>();
@@ -182,6 +186,7 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
                 .startTurning(3000)
                 .setCanLoop(true);
     }
+
     private void initGoodsInfo(JSONObject data) {
         final String goodsData = data.toJSONString();
         getSupportDelegate().
@@ -189,12 +194,16 @@ public class GoodsDetailDelegate extends LatteDelegate implements AppBarLayout.O
     }
 
 
-
+    //动画结束后 回调
     @Override
     public void onAnimationEnd() {
         YoYo.with(new ScaleUpAnimator())
                 .duration(500)
                 .playOn(mIconShopCart);
+        mShopCount++;
+        mCircleTextView.setVisibility(View.VISIBLE);
+        mCircleTextView.setText(String.valueOf(mShopCount));
+
 //        RestClient.builder()
 //                .url("http://news.baidu.com/")
 //                .success(new ISuccess() {

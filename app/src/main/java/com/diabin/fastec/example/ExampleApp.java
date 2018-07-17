@@ -33,7 +33,7 @@ public class ExampleApp extends Application {
 //                .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
-                .withJavascriptInterface("latte")//添加发现 的本地嵌套html5
+                .withJavascriptInterface("Latte")//添加发现 的本地嵌套html5
 
                 .configure();
 

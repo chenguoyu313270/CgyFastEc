@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_bottom"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="70dp"
     android:layout_alignParentBottom="true"
     android:baselineAligned="true"
     android:orientation="horizontal">
@@ -98,27 +98,5 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_collect_shop_car"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@android:color/holo_blue_dark">
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="123"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:text="收藏"
-            android:gravity="center" />
-    </RelativeLayout>
 </android.support.v7.widget.LinearLayoutCompat>
